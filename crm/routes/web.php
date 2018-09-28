@@ -24,3 +24,15 @@ Route::any('orderList','Admin\Order@orderList');
 
 //主题
 Route::any('theme','Admin\Login@theme');
+
+//管理员列表
+Route::any('adminList','Admin\Admin@adminList');
+
+//管理员添加
+Route::any('adminAdd','Admin\Admin@adminAdd');
+
+//产品列表
+Route::any('productList','Admin\Product@productList');
+
+//产品添加
+Route::any('productAdd','Admin\Product@productAdd');

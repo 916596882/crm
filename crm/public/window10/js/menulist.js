@@ -1,6 +1,6 @@
 ﻿//@ sourceURL=menulist.js
 layui.config({
-    base: '../../lib/' //指定 winui 路径
+    base: '/window10/lib/' //指定 winui 路径
     , version: '1.0.0-beta'
 }).extend({
     winui: 'winui/winui',
@@ -17,7 +17,7 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#menu',
-        url: '../../json/menulist.json',
+        url: '/window10/json/menulist.json',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
         //skin: '',   //边框风格，可选值line row nob
@@ -156,18 +156,19 @@ layui.config({
         table.reload(tableId, {});
     }
     //绑定工具栏添加按钮事件
-    $('#addMenu').on('click', function () {
+    //添加产品
+    $('#productAdd').on('click', function () {
         var content;
         var index = layer.load(1);
         $.ajax({
             type: 'get',
-            url: 'add.html',
+            url: 'productAdd',
             success: function (data) {
                 layer.close(index);
                 content = data;
                 //从桌面打开
                 top.winui.window.open({
-                    id: 'addMenu',
+                    id: 'productAdd',
                     type: 1,
                     title: '新增菜单',
                     content: content,
@@ -185,6 +186,170 @@ layui.config({
             }
         });
     });
+    //管理员添加
+    $('#adminAdd').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: 'adminAdd',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'adminAdd',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+
+    //售后添加
+    $('#afterAdd').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: 'afterAdd',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'afterAdd',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+
+    //客户添加
+    $('#userAdd').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: 'userAdd',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'userAdd',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+
+    //添加跟踪
+    $('#tailAdd').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: 'tailAdd',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'tailAdd',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+
+    //添加费用
+    $('#addCost').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: 'addCost',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'addCost',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+
     //绑定工具栏编辑按钮事件
     $('#editMenu').on('click', function () {
         var checkStatus = table.checkStatus(tableId);

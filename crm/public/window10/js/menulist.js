@@ -155,19 +155,112 @@ layui.config({
     function reloadTable() {
         table.reload(tableId, {});
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //绑定工具栏添加按钮事件
-    $('#addMenu').on('click', function () {
+    $('#afterAdd').on('click', function () {
         var content;
         var index = layer.load(1);
         $.ajax({
             type: 'get',
-            url: 'add.html',
+            url: '/afterAdd',
             success: function (data) {
                 layer.close(index);
                 content = data;
                 //从桌面打开
                 top.winui.window.open({
-                    id: 'addMenu',
+                    id: 'afterAdd',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+    $('#userAdd').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: '/userAdd',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'userAdd',
                     type: 1,
                     title: '新增菜单',
                     content: content,

@@ -15,8 +15,20 @@
     },
 
     {
+      "title": "查看订单",
+      "pageURL": "orderList",
+      "name": "查看订单",
+      "icon": "fa-navicon",
+      "openType": 2,
+      "maxOpen": -1,
+      "extend": false,
+      "childs": null,
+      "id": 2
+    },
+
+    {
       "title": "客户录入",
-      "pageURL": "/home/reward",
+      "pageURL": "/userList",
       "name": "客户录入",
       "icon": "fa-qrcode",
       "openType": 2,
@@ -63,7 +75,7 @@
     },
     {
       "title": "售后管理",
-      "pageURL": "http://fly.layui.com/case/u/3547992",
+      "pageURL": "/afterList",
       "name": "售后管理",
       "icon": "fa-thumbs-up",
       "openType": 2,

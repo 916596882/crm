@@ -216,6 +216,140 @@ layui.config({
             }
         });
     });
+
+    //售后添加
+    $('#afterAdd').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: 'afterAdd',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'afterAdd',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+
+    //客户添加
+    $('#userAdd').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: 'userAdd',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'userAdd',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+
+    //添加跟踪
+    $('#tailAdd').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: 'tailAdd',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'tailAdd',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+    
+    //添加费用
+    $('#addCost').on('click', function () {
+        var content;
+        var index = layer.load(1);
+        $.ajax({
+            type: 'get',
+            url: 'addCost',
+            success: function (data) {
+                layer.close(index);
+                content = data;
+                //从桌面打开
+                top.winui.window.open({
+                    id: 'addCost',
+                    type: 1,
+                    title: '新增菜单',
+                    content: content,
+                    area: ['50vw', '70vh'],
+                    offset: ['15vh', '25vw']
+                });
+            },
+            error: function (xml) {
+                layer.close(load);
+                msg('操作失败', {
+                    icon: 2,
+                    time: 2000
+                });
+                console.error(xml.responseText);
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+
     //绑定工具栏编辑按钮事件
     $('#editMenu').on('click', function () {
         var checkStatus = table.checkStatus(tableId);

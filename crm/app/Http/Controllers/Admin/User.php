@@ -17,4 +17,7 @@ class User extends Common
     public function userAdd(){
         return view('User/userAdd');
     }
+
+
+    
 }

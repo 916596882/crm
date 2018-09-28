@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Input;
 
 class Login extends Common
 {
-
-    //李凯是个神经病
     /**
      * 登陆的视图页面 && 执行登陆
      */
@@ -30,5 +28,10 @@ class Login extends Common
             session('admin_info',$admin_data);
             return $this->success();
         }
+    }
+
+
+    public function theme(){
+
     }
 }

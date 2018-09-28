@@ -3,9 +3,9 @@
   "message": "成功",
   "data": [
     {
-      "title": "管理员",
+      "title": "主题",
       "pageURL": "theme",
-      "name": "管理员",
+      "name": "主题",
       "icon": "fa-television",
       "openType": 1,
       "maxOpen": -1,
@@ -13,6 +13,20 @@
       "childs": null,
       "id": 1
     },
+
+    {
+      "title": "查看订单",
+      "pageURL": "orderList",
+      "name": "查看订单",
+      "icon": "fa-navicon",
+      "openType": 2,
+      "maxOpen": -1,
+      "extend": false,
+      "childs": null,
+      "id": 2
+    },
+
+
     {
       "title": "客户录入",
       "pageURL": "/home/reward",
@@ -35,17 +49,7 @@
       "childs": null,
       "id": 4
     },
-    {
-      "title": "查看订单",
-      "pageURL": "views/menu/list_iframe.html",
-      "name": "查看订单",
-      "icon": "fa-navicon",
-      "openType": 2,
-      "maxOpen": -1,
-      "extend": false,
-      "childs": null,
-      "id": 2
-    },
+
     {
       "title": "费用管理",
       "pageURL": "views/role/list.html",

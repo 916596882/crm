@@ -1,4 +1,4 @@
-﻿<script>
+<script>
     layui.link(winui.path + 'css/theme.css');
 </script>
 
@@ -226,11 +226,11 @@
                     </div>
                     <h2>选择图片</h2>
                     <div class="lockscreen-choose">
-                        <img src="bg_01.jpg" />
-                        <img src="bg_02.jpg" />
-                        <img src="bg_03.jpg" />
-                        <img src="bg_04.jpg" />
-                        <img src="bg_05.jpg" />
+                        <img src="/window10/images/bg_01.jpg" />
+                        <img src="/window10/images/bg_02.jpg" />
+                        <img src="/window10/images/bg_03.jpg" />
+                        <img src="/window10/images/bg_04.jpg" />
+                        <img src="/window10/images/bg_05.jpg" />
                     </div>
                     <!-- 上传图片 -->
                     <input type="file" name="file" class="layui-upload-file" style="display:none;">
@@ -338,4 +338,4 @@
     </div>
 </div>
 
-<script src="/window10/lib/winui/js/theme.js"></script>
+<script src="/window10/lib/winui/js/theme.min.js"></script>

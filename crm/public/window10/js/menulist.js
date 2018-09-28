@@ -1,6 +1,6 @@
 ﻿//@ sourceURL=menulist.js
 layui.config({
-    base: '../../lib/' //指定 winui 路径
+    base: '/window10/lib/' //指定 winui 路径
     , version: '1.0.0-beta'
 }).extend({
     winui: 'winui/winui',
@@ -17,7 +17,7 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#menu',
-        url: '../../json/menulist.json',
+        url: '/window10/json/menulist.json',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
         //skin: '',   //边框风格，可选值line row nob

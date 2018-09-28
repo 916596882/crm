@@ -309,7 +309,7 @@ layui.config({
             }
         });
     });
-    
+
     //添加费用
     $('#addCost').on('click', function () {
         var content;

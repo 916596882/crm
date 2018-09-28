@@ -15,19 +15,6 @@
     },
 
     {
-      "title": "查看订单",
-      "pageURL": "orderList",
-      "name": "查看订单",
-      "icon": "fa-navicon",
-      "openType": 2,
-      "maxOpen": -1,
-      "extend": false,
-      "childs": null,
-      "id": 2
-    },
-
-
-    {
       "title": "客户录入",
       "pageURL": "/home/reward",
       "name": "客户录入",
@@ -49,6 +36,19 @@
       "childs": null,
       "id": 4
     },
+
+    {
+      "title": "查看订单",
+      "pageURL": "orderList",
+      "name": "查看订单",
+      "icon": "fa-navicon",
+      "openType": 2,
+      "maxOpen": -1,
+      "extend": false,
+      "childs": null,
+      "id": 2
+    },
+
 
     {
       "title": "费用管理",
@@ -73,9 +73,20 @@
     },
     {
       "title": "产品管理",
-      "pageURL": "http://www.layui.com/",
+      "pageURL": "productList",
       "name": "产品管理",
       "icon": "http://www.layui.com/favicon.ico",
+      "openType": 2,
+      "extend": false,
+      "childs": null,
+      "id": 57
+    },
+
+    {
+      "title": "管理员管理",
+      "pageURL": "adminList",
+      "name": "管理员管理",
+      "icon": "fa-user",
       "openType": 2,
       "extend": false,
       "childs": null,

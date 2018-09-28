@@ -18,7 +18,6 @@ Route::get('/', function () {
 //登陆的视图页面
 Route::any('login','Admin\Login@login');
 
-
 //订单列表
 Route::any('orderList','Admin\Order@orderList');
 

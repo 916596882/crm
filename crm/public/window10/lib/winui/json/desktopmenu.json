@@ -32,7 +32,7 @@
       "pageURL": "/home/reward",
       "name": "客户录入",
       "icon": "fa-qrcode",
-      "openType": 1,
+      "openType": 2,
       "maxOpen": -1,
       "extend": false,
       "childs": null,
@@ -40,7 +40,7 @@
     },
     {
       "title": "跟踪订单",
-      "pageURL": "views/demo/introduce.html",
+      "pageURL": "tailOrder",
       "name": "跟踪订单",
       "icon": "fa-info-circle",
       "openType": 2,
@@ -52,7 +52,7 @@
 
     {
       "title": "费用管理",
-      "pageURL": "views/role/list.html",
+      "pageURL": "costList",
       "name": "费用管理",
       "icon": "fa-th-large",
       "openType": 2,

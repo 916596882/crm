@@ -15,7 +15,6 @@
     },
 
     {
-<<<<<<< HEAD
       "title": "查看订单",
       "pageURL": "orderList",
       "name": "查看订单",
@@ -28,8 +27,6 @@
     },
 
     {
-=======
->>>>>>> 6ef253c762a7104b9e833cb40ff404148b08ce05
       "title": "客户录入",
       "pageURL": "/userList",
       "name": "客户录入",

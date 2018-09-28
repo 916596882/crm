@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Input;
 
 class Login extends Common
 {
+
+    //李凯是个神经病
     /**
      * 登陆的视图页面 && 执行登陆
      */

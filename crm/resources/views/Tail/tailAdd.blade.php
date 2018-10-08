@@ -1,27 +1,27 @@
 <div style="width:600px;margin:0 auto;padding-top:20px;">
     <form class="layui-form" action="">
         <div class="layui-form-item">
-            <label class="layui-form-label">上级菜单</label>
+            <label class="layui-form-label">订单进度</label>
             <div class="layui-input-block">
                 <select name="parentId">
-                    <option value="0">请选择上级菜单</option>
-                    <option value="1">&#x4E2A;&#x6027;&#x5316;</option>
-                    <option value="3">&#x6253;&#x8D4F;&#x4F5C;&#x8005;</option>
-
+                    <option value="0">请选择</option>
+                    <option value="1">潜在客户</option>
+                    <option value="2">准备下单</option>
+                    <option value="3">犹豫客户</option>
                 </select>
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">菜单图标</label>
+            <label class="layui-form-label">详细内容</label>
             <div class="layui-input-block">
-                <input type="text" name="icon" win-verify="required" placeholder="请输入图标src或者class" autocomplete="off" class="layui-input" />
+                <input type="text" name="icon" win-verify="required" placeholder="" autocomplete="off" class="layui-input" />
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">下次联系时间</label>
-            <div class="layui-input-block">
+            <div class="layui-inline">
                 <input type="text" class="layui-input" id="test1">
             </div>
         </div>
@@ -33,12 +33,12 @@
                 <input type="radio" name="openType" value="2" title="微信" />
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">系统菜单</label>
-            <div class="layui-input-block winui-switch">
-                <input name="isNecessary" lay-filter="isNecessary" type="checkbox" lay-skin="switch" lay-text="是|否" />
-            </div>
-        </div>
+        {{--<div class="layui-form-item">--}}
+            {{--<label class="layui-form-label">系统菜单</label>--}}
+            {{--<div class="layui-input-block winui-switch">--}}
+                {{--<input name="isNecessary" lay-filter="isNecessary" type="checkbox" lay-skin="switch" lay-text="是|否" />--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="winui-btn" lay-submit lay-filter="formAddMenu">确定</button>

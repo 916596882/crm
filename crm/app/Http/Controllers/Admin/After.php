@@ -9,6 +9,9 @@ class After extends Common
 {
     //售后列表
     public function afterList(){
+        //订单id
+        //用户id
+        //管理员id 默认1
         return view('After/afterList');
     }
 

@@ -50,19 +50,6 @@
     },
 
     {
-      "title": "查看订单",
-      "pageURL": "orderList",
-      "name": "查看订单",
-      "icon": "fa-navicon",
-      "openType": 2,
-      "maxOpen": -1,
-      "extend": false,
-      "childs": null,
-      "id": 2
-    },
-
-
-    {
       "title": "费用管理",
       "pageURL": "costList",
       "name": "费用管理",

@@ -7,47 +7,30 @@
                     <option value="0">请选择上级菜单</option>
                     <option value="1">&#x4E2A;&#x6027;&#x5316;</option>
                     <option value="3">&#x6253;&#x8D4F;&#x4F5C;&#x8005;</option>
-                    <option value="4">&#x57FA;&#x672C;&#x8BF4;&#x660E;</option>
-                    <option value="23">&#x7CFB;&#x7EDF;&#x8BBE;&#x7F6E;</option>
-                    <option value="27">Font Awesome&#x56FE;&#x6807;&#x5C55;&#x793A;</option>
-                    <option value="43">Font Awesome&#x7B2C;&#x4E09;&#x65B9;LOGO</option>
-                    <option value="53">&#x81EA;&#x5B9A;&#x4E49;&#x56FE;&#x7247;&#x83DC;&#x5355;</option>
-                    <option value="60">&#x7CFB;&#x7EDF;&#x65E5;&#x5FD7;</option>
-                    <option value="62">&#x70B9;&#x8D5E;</option>
-                    <option value="63">123</option>
-                    <option value="66">&#x4F5C;&#x8005;&#x535A;&#x5BA2;</option>
+
                 </select>
             </div>
         </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">菜单图标</label>
             <div class="layui-input-block">
                 <input type="text" name="icon" win-verify="required" placeholder="请输入图标src或者class" autocomplete="off" class="layui-input" />
             </div>
         </div>
+
         <div class="layui-form-item">
-            <label class="layui-form-label">菜单名称</label>
+            <label class="layui-form-label">下次联系时间</label>
             <div class="layui-input-block">
-                <input type="text" name="name" win-verify="required" placeholder="请输入菜单名称" autocomplete="off" class="layui-input" />
+                <input type="text" class="layui-input" id="test1">
             </div>
         </div>
+
         <div class="layui-form-item">
-            <label class="layui-form-label">窗口标题</label>
-            <div class="layui-input-block">
-                <input type="text" name="title" placeholder="请输入菜单名称" autocomplete="off" class="layui-input" />
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">菜单地址</label>
-            <div class="layui-input-block">
-                <input type="text" name="pageurl" placeholder="请输入菜单地址" autocomplete="off" class="layui-input" />
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">菜单类型</label>
+            <label class="layui-form-label">跟单类型</label>
             <div class="layui-input-block winui-radio">
-                <input type="radio" name="openType" value="1" title="HTML" />
-                <input type="radio" name="openType" value="2" title="Iframe" checked />
+                <input type="radio" name="openType" value="1" title="手机" checked />
+                <input type="radio" name="openType" value="2" title="微信" />
             </div>
         </div>
         <div class="layui-form-item">
@@ -65,6 +48,17 @@
     </form>
     <div class="tips">Tips：1.系统菜单不可以删除 2.窗口标题若不填则默认和菜单名称相同</div>
 </div>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+    });
+</script>
+
 <script>
     layui.use(['form','layer'], function (form) {
         var $ = layui.$

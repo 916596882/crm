@@ -13,10 +13,161 @@ layui.config({
         $ = layui.$, tableId = 'tableid';
     //桌面显示提示消息的函数
     var msg = top.winui.window.msg;
-    //表格渲染
+
+    // todo 客户录入
     table.render({
         id: tableId,
-        elem: '#menu',
+        elem: '#user',
+        url: '/window10/json/menulist.json',
+        //height: 'full-65', //自适应高度
+        //size: '',   //表格尺寸，可选值sm lg
+        //skin: '',   //边框风格，可选值line row nob
+        //even:true,  //隔行变色
+        page: true,
+        limits: [10, 20, 30, 40, 50, 60, 70, 100],
+        limit: 10,
+        cols: [[
+            { field: 'id', type: 'checkbox' },
+            { field: 'icon', title: '图标', width: 120 },
+            { field: 'name', title: '名称', width: 150 },
+            { field: 'title', title: '标题', width: 150 },
+            { field: 'pageURL', title: '页面地址', width: 200 },
+            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
+            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
+            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
+        ]]
+    });
+
+    // todo 跟踪订单
+    table.render({
+        id: tableId,
+        elem: '#tail',
+        url: '/window10/json/menulist.json',
+        //height: 'full-65', //自适应高度
+        //size: '',   //表格尺寸，可选值sm lg
+        //skin: '',   //边框风格，可选值line row nob
+        //even:true,  //隔行变色
+        page: true,
+        limits: [10, 20, 30, 40, 50, 60, 70, 100],
+        limit: 10,
+        cols: [[
+            { field: 'id', type: 'checkbox' },
+            { field: 'icon', title: '图标', width: 120 },
+            { field: 'name', title: '名称', width: 150 },
+            { field: 'title', title: '标题', width: 150 },
+            { field: 'pageURL', title: '页面地址', width: 200 },
+            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
+            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
+            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
+        ]]
+    });
+
+    // todo 产品
+    table.render({
+        id: tableId,
+        elem: '#product',
+        url: '/window10/json/menulist.json',
+        //height: 'full-65', //自适应高度
+        //size: '',   //表格尺寸，可选值sm lg
+        //skin: '',   //边框风格，可选值line row nob
+        //even:true,  //隔行变色
+        page: true,
+        limits: [10, 20, 30, 40, 50, 60, 70, 100],
+        limit: 10,
+        cols: [[
+            { field: 'id', type: 'checkbox' },
+            { field: 'icon', title: '图标', width: 120 },
+            { field: 'name', title: '名称', width: 150 },
+            { field: 'title', title: '标题', width: 150 },
+            { field: 'pageURL', title: '页面地址', width: 200 },
+            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
+            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
+            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
+        ]]
+    });
+
+    // todo 订单
+    table.render({
+        id: tableId,
+        elem: '#order',
+        url: '/window10/json/menulist.json',
+        //height: 'full-65', //自适应高度
+        //size: '',   //表格尺寸，可选值sm lg
+        //skin: '',   //边框风格，可选值line row nob
+        //even:true,  //隔行变色
+        page: true,
+        limits: [10, 20, 30, 40, 50, 60, 70, 100],
+        limit: 10,
+        cols: [[
+            { field: 'id', type: 'checkbox' },
+            { field: 'icon', title: '图标', width: 120 },
+            { field: 'name', title: '名称', width: 150 },
+            { field: 'title', title: '标题', width: 150 },
+            { field: 'pageURL', title: '页面地址', width: 200 },
+            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
+            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
+            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
+        ]]
+    });
+
+    // todo 费用
+    table.render({
+        id: tableId,
+        elem: '#cost',
+        url: '/window10/json/menulist.json',
+        //height: 'full-65', //自适应高度
+        //size: '',   //表格尺寸，可选值sm lg
+        //skin: '',   //边框风格，可选值line row nob
+        //even:true,  //隔行变色
+        page: true,
+        limits: [10, 20, 30, 40, 50, 60, 70, 100],
+        limit: 10,
+        cols: [[
+            { field: 'id', type: 'checkbox' },
+            { field: 'icon', title: '图标', width: 120 },
+            { field: 'name', title: '名称', width: 150 },
+            { field: 'title', title: '标题', width: 150 },
+            { field: 'pageURL', title: '页面地址', width: 200 },
+            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
+            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
+            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
+        ]]
+    });
+
+    // todo 管理员
+    table.render({
+        id: tableId,
+        elem: '#admin',
+        url: '/window10/json/menulist.json',
+        //height: 'full-65', //自适应高度
+        //size: '',   //表格尺寸，可选值sm lg
+        //skin: '',   //边框风格，可选值line row nob
+        //even:true,  //隔行变色
+        page: true,
+        limits: [10, 20, 30, 40, 50, 60, 70, 100],
+        limit: 10,
+        cols: [[
+            { field: 'id', type: 'checkbox' },
+            { field: 'icon', title: '图标', width: 120 },
+            { field: 'name', title: '名称', width: 150 },
+            { field: 'title', title: '标题', width: 150 },
+            { field: 'pageURL', title: '页面地址', width: 200 },
+            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
+            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
+            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
+        ]]
+    });
+
+    //表格渲染 todo 售后
+    table.render({
+        id: tableId,
+        elem: '#after',
         url: '/window10/json/menulist.json',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
@@ -340,15 +491,6 @@ layui.config({
             }
         });
     });
-
-
-
-
-
-
-
-
-
 
     //绑定工具栏编辑按钮事件
     $('#editMenu').on('click', function () {

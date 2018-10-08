@@ -283,6 +283,7 @@ layui.config({
     }
     //删除菜单
     function deleteMenu(ids, obj) {
+        console.log(obj);return false;
         var msg = obj ? '确认删除菜单【' + obj.data.name + '】吗？' : '确认删除选中数据吗？';
         top.winui.window.confirm(msg, { icon: 3, title: '删除系统菜单' }, function (index) {
             layer.close(index);

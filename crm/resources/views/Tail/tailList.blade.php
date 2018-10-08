@@ -37,7 +37,7 @@
     {{--否--}}
     {{--{{#  } }}--}}
     {{--</script>--}}
-    <div class="tips">Tips：1.系统菜单不可以删除 2.修改或添加数据后暂不支持自动刷新表格</div>
+    {{--<div class="tips">Tips：1.系统菜单不可以删除 2.修改或添加数据后暂不支持自动刷新表格</div>--}}
 </div>
 <script src="/window10/lib/layui/layui.js"></script>
 <script type="text/javascript">

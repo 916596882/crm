@@ -13,7 +13,7 @@ layui.config({
         $ = layui.$, tableId = 'tableid';
     //桌面显示提示消息的函数
     var msg = top.winui.window.msg;
-
+    //         todo 数据
     // todo 客户录入
     table.render({
         id: tableId,
@@ -66,8 +66,6 @@ layui.config({
         ]]
     });
 
-
-
     // todo 产品
     table.render({
         id: tableId,
@@ -82,9 +80,9 @@ layui.config({
         limit: 3,
         cols: [[
             { field: 'product_id' },
-            { field: 'product_name', title: '产品名称', width: 120 },
-            { field: 'product_price', title: '产品价格', width: 150 },
-            { field: 'product_contents', title: '产品描述', width: 150 },
+            { field: 'product_name', title: '产品名称', width: 120 ,edit:'text'},
+            { field: 'product_price', title: '产品价格', width: 150 ,edit:'text'},
+            { field: 'product_contents', title: '产品描述', width: 150,edit:'text' },
             { field: 'ctime', title: '添加时间', width: 200 },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
@@ -189,8 +187,10 @@ layui.config({
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
     });
-    //监听工具条
-    table.on('tool(menutable)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+
+    //        todo 工具条监听
+    // todo 产品监听工具条
+    table.on('tool(product)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
         var data = obj.data; //获得当前行数据
         var layEvent = obj.event; //获得 lay-event 对应的值
         var tr = obj.tr; //获得当前行 tr 的DOM对象
@@ -229,8 +229,411 @@ layui.config({
             });
         }
     });
-    //监听单元格编辑
-    table.on('edit(menutable)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+
+    // todo 管理员监听工具条
+    table.on('tool(admin)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值
+        var tr = obj.tr; //获得当前行 tr 的DOM对象
+        var ids = '';   //选中的Id
+        $(data).each(function (index, item) {
+            ids += item.id + ',';
+        });
+        if (layEvent === 'del') { //删除
+            deleteMenu(ids, obj);
+        } else if (layEvent === 'edit') { //编辑
+            openEditWindow(data.id);
+        } else if (layEvent === 'setting') {    //功能设置
+            $.ajax({
+                type: 'get',
+                url: 'setting.html?menuId=' + data.id,
+                async: false,
+                success: function (data) {
+                    content = data;
+                    //从桌面打开
+                    top.winui.window.open({
+                        id: 'settingMenu',
+                        type: 1,
+                        title: '权限设置',
+                        content: content,
+                        area: ['55vw', '70vh'],
+                        offset: ['15vh', '25vw'],
+                    });
+                },
+                error: function (xml) {
+                    msg("获取页面失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 售后监听工具条
+    table.on('tool(after)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值
+        var tr = obj.tr; //获得当前行 tr 的DOM对象
+        var ids = '';   //选中的Id
+        $(data).each(function (index, item) {
+            ids += item.id + ',';
+        });
+        if (layEvent === 'del') { //删除
+            deleteMenu(ids, obj);
+        } else if (layEvent === 'edit') { //编辑
+            openEditWindow(data.id);
+        } else if (layEvent === 'setting') {    //功能设置
+            $.ajax({
+                type: 'get',
+                url: 'setting.html?menuId=' + data.id,
+                async: false,
+                success: function (data) {
+                    content = data;
+                    //从桌面打开
+                    top.winui.window.open({
+                        id: 'settingMenu',
+                        type: 1,
+                        title: '权限设置',
+                        content: content,
+                        area: ['55vw', '70vh'],
+                        offset: ['15vh', '25vw'],
+                    });
+                },
+                error: function (xml) {
+                    msg("获取页面失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 费用监听工具条
+    table.on('tool(cost)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值
+        var tr = obj.tr; //获得当前行 tr 的DOM对象
+        var ids = '';   //选中的Id
+        $(data).each(function (index, item) {
+            ids += item.id + ',';
+        });
+        if (layEvent === 'del') { //删除
+            deleteMenu(ids, obj);
+        } else if (layEvent === 'edit') { //编辑
+            openEditWindow(data.id);
+        } else if (layEvent === 'setting') {    //功能设置
+            $.ajax({
+                type: 'get',
+                url: 'setting.html?menuId=' + data.id,
+                async: false,
+                success: function (data) {
+                    content = data;
+                    //从桌面打开
+                    top.winui.window.open({
+                        id: 'settingMenu',
+                        type: 1,
+                        title: '权限设置',
+                        content: content,
+                        area: ['55vw', '70vh'],
+                        offset: ['15vh', '25vw'],
+                    });
+                },
+                error: function (xml) {
+                    msg("获取页面失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 订单监听工具条
+    table.on('tool(order)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值
+        var tr = obj.tr; //获得当前行 tr 的DOM对象
+        var ids = '';   //选中的Id
+        $(data).each(function (index, item) {
+            ids += item.id + ',';
+        });
+        if (layEvent === 'del') { //删除
+            deleteMenu(ids, obj);
+        } else if (layEvent === 'edit') { //编辑
+            openEditWindow(data.id);
+        } else if (layEvent === 'setting') {    //功能设置
+            $.ajax({
+                type: 'get',
+                url: 'setting.html?menuId=' + data.id,
+                async: false,
+                success: function (data) {
+                    content = data;
+                    //从桌面打开
+                    top.winui.window.open({
+                        id: 'settingMenu',
+                        type: 1,
+                        title: '权限设置',
+                        content: content,
+                        area: ['55vw', '70vh'],
+                        offset: ['15vh', '25vw'],
+                    });
+                },
+                error: function (xml) {
+                    msg("获取页面失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 客户监听工具条
+    table.on('tool(user)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值
+        var tr = obj.tr; //获得当前行 tr 的DOM对象
+        var ids = '';   //选中的Id
+        $(data).each(function (index, item) {
+            ids += item.id + ',';
+        });
+        if (layEvent === 'del') { //删除
+            deleteMenu(ids, obj);
+        } else if (layEvent === 'edit') { //编辑
+            openEditWindow(data.id);
+        } else if (layEvent === 'setting') {    //功能设置
+            $.ajax({
+                type: 'get',
+                url: 'setting.html?menuId=' + data.id,
+                async: false,
+                success: function (data) {
+                    content = data;
+                    //从桌面打开
+                    top.winui.window.open({
+                        id: 'settingMenu',
+                        type: 1,
+                        title: '权限设置',
+                        content: content,
+                        area: ['55vw', '70vh'],
+                        offset: ['15vh', '25vw'],
+                    });
+                },
+                error: function (xml) {
+                    msg("获取页面失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 订单跟踪监听工具条
+    table.on('tool(tail)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值
+        var tr = obj.tr; //获得当前行 tr 的DOM对象
+        var ids = '';   //选中的Id
+        $(data).each(function (index, item) {
+            ids += item.id + ',';
+        });
+        if (layEvent === 'del') { //删除
+            deleteMenu(ids, obj);
+        } else if (layEvent === 'edit') { //编辑
+            openEditWindow(data.id);
+        } else if (layEvent === 'setting') {    //功能设置
+            $.ajax({
+                type: 'get',
+                url: 'setting.html?menuId=' + data.id,
+                async: false,
+                success: function (data) {
+                    content = data;
+                    //从桌面打开
+                    top.winui.window.open({
+                        id: 'settingMenu',
+                        type: 1,
+                        title: '权限设置',
+                        content: content,
+                        area: ['55vw', '70vh'],
+                        offset: ['15vh', '25vw'],
+                    });
+                },
+                error: function (xml) {
+                    msg("获取页面失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+    //    todo   监听单元格编辑
+    // todo 监听产品单元格编辑
+    table.on('edit(product)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        if (/^[0-9]+$/.test(obj.value)) {
+            var index = layer.load(1);
+            $.ajax({
+                type: 'post',
+                url: 'views/menu/updatemenuorder',
+                data: { "id": obj.data.id, "order": obj.value },
+                success: function (json) {
+                    layer.close(index);
+                    if (!json.isSucceed) {
+                        msg(json.message);
+                    }
+                },
+                error: function (xml) {
+                    layer.close(index);
+                    msg("修改失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 监听管理员单元格编辑
+    table.on('edit(admin)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        if (/^[0-9]+$/.test(obj.value)) {
+            var index = layer.load(1);
+            $.ajax({
+                type: 'post',
+                url: 'views/menu/updatemenuorder',
+                data: { "id": obj.data.id, "order": obj.value },
+                success: function (json) {
+                    layer.close(index);
+                    if (!json.isSucceed) {
+                        msg(json.message);
+                    }
+                },
+                error: function (xml) {
+                    layer.close(index);
+                    msg("修改失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 监听售后单元格编辑
+    table.on('edit(after)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        if (/^[0-9]+$/.test(obj.value)) {
+            var index = layer.load(1);
+            $.ajax({
+                type: 'post',
+                url: 'views/menu/updatemenuorder',
+                data: { "id": obj.data.id, "order": obj.value },
+                success: function (json) {
+                    layer.close(index);
+                    if (!json.isSucceed) {
+                        msg(json.message);
+                    }
+                },
+                error: function (xml) {
+                    layer.close(index);
+                    msg("修改失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 监听费用单元格编辑
+    table.on('edit(cost)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        if (/^[0-9]+$/.test(obj.value)) {
+            var index = layer.load(1);
+            $.ajax({
+                type: 'post',
+                url: 'views/menu/updatemenuorder',
+                data: { "id": obj.data.id, "order": obj.value },
+                success: function (json) {
+                    layer.close(index);
+                    if (!json.isSucceed) {
+                        msg(json.message);
+                    }
+                },
+                error: function (xml) {
+                    layer.close(index);
+                    msg("修改失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 监听订单单元格编辑
+    table.on('edit(order)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        if (/^[0-9]+$/.test(obj.value)) {
+            var index = layer.load(1);
+            $.ajax({
+                type: 'post',
+                url: 'views/menu/updatemenuorder',
+                data: { "id": obj.data.id, "order": obj.value },
+                success: function (json) {
+                    layer.close(index);
+                    if (!json.isSucceed) {
+                        msg(json.message);
+                    }
+                },
+                error: function (xml) {
+                    layer.close(index);
+                    msg("修改失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 监听跟踪订单单元格编辑
+    table.on('edit(tail)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        if (/^[0-9]+$/.test(obj.value)) {
+            var index = layer.load(1);
+            $.ajax({
+                type: 'post',
+                url: 'views/menu/updatemenuorder',
+                data: { "id": obj.data.id, "order": obj.value },
+                success: function (json) {
+                    layer.close(index);
+                    if (!json.isSucceed) {
+                        msg(json.message);
+                    }
+                },
+                error: function (xml) {
+                    layer.close(index);
+                    msg("修改失败", {
+                        icon: 2,
+                        time: 2000
+                    });
+                    console.log(xml.responseText);
+                }
+            });
+        }
+    });
+
+    // todo 监听客户单元格编辑
+    table.on('edit(user)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
         if (/^[0-9]+$/.test(obj.value)) {
             var index = layer.load(1);
             $.ajax({

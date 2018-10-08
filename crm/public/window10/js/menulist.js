@@ -475,6 +475,11 @@ layui.config({
             });
         }
     });
+
+
+
+
+    
     //    todo   监听单元格编辑
     // todo 监听产品单元格编辑
     table.on('edit(product)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"

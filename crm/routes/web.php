@@ -119,7 +119,8 @@ Route::any('userAdd','Admin\User@userAdd');
 
 
 //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-
+//市
+Route::any('finds','Admin\User@finds');
 
 
 

@@ -25,7 +25,7 @@
     </script>
     {{--<script type="text/html" id="openTypeTpl">--}}
     {{--{{#  if(d.openType == 1){ }}--}}
-    {{--HTML--}}
+    {{--HTML--}}.
     {{--{{#  } else if(d.openType==2) { }}--}}
     {{--Iframe--}}
     {{--{{#  } }}--}}

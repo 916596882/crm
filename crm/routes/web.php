@@ -186,3 +186,5 @@ Route::any('userAdd','Admin\User@userAdd');
 
 
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+//执行跟踪订单
+Route::any('tailListDo','Admin\Tail@tailListDo');

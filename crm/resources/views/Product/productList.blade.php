@@ -11,7 +11,7 @@
 <div class="winui-toolbar">
     <div class="winui-tool">
         <button id="reloadTable" class="winui-toolbtn"><i class="fa fa-refresh" aria-hidden="true"></i>刷新数据</button>
-        <button id="productAdd" class="winui-toolbtn"><i class="fa fa-plus" aria-hidden="true"></i>新增菜单</button>
+        <button id="productAdd" class="winui-toolbtn"><i class="fa fa-plus" aria-hidden="true"></i>产品添加</button>
         <button id="editMenu" class="winui-toolbtn"><i class="fa fa-pencil" aria-hidden="true"></i>编辑菜单</button>
         <button id="deleteMenu" class="winui-toolbtn"><i class="fa fa-trash" aria-hidden="true"></i>删除选中</button>
     </div>
@@ -23,21 +23,7 @@
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
-    {{--<script type="text/html" id="openTypeTpl">--}}
-    {{--{{#  if(d.openType == 1){ }}--}}
-    {{--HTML--}}
-    {{--{{#  } else if(d.openType==2) { }}--}}
-    {{--Iframe--}}
-    {{--{{#  } }}--}}
-    {{--</script>--}}
-    {{--<script type="text/html" id="isNecessary">--}}
-    {{--{{#  if(d.isNecessary){ }}--}}
-    {{--是--}}
-    {{--{{#  } else { }}--}}
-    {{--否--}}
-    {{--{{#  } }}--}}
-    {{--</script>--}}
-    <div class="tips">Tips：1.系统菜单不可以删除 2.修改或添加数据后暂不支持自动刷新表格</div>
+
 </div>
 <script src="/window10/lib/layui/layui.js"></script>
 <script type="text/javascript">

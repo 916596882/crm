@@ -72,23 +72,20 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#product',
-        url: '/window10/json/menulist.json',
+        url: '/productList',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
         //skin: '',   //边框风格，可选值line row nob
         //even:true,  //隔行变色
         page: true,
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
-        limit: 10,
+        limit: 3,
         cols: [[
-            { field: 'id', type: 'checkbox' },
-            { field: 'icon', title: '图标', width: 120 },
-            { field: 'name', title: '名称', width: 150 },
-            { field: 'title', title: '标题', width: 150 },
-            { field: 'pageURL', title: '页面地址', width: 200 },
-            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
-            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
-            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { field: 'product_id' },
+            { field: 'product_name', title: '产品名称', width: 120 },
+            { field: 'product_price', title: '产品价格', width: 150 },
+            { field: 'product_contents', title: '产品描述', width: 150 },
+            { field: 'ctime', title: '添加时间', width: 200 },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
     });
@@ -325,7 +322,7 @@ layui.config({
                 top.winui.window.open({
                     id: 'productAdd',
                     type: 1,
-                    title: '新增菜单',
+                    title: '添加产品',
                     content: content,
                     area: ['50vw', '70vh'],
                     offset: ['15vh', '25vw']

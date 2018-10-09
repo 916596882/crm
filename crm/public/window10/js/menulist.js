@@ -815,7 +815,8 @@ layui.config({
                     title: '新增菜单',
                     content: content,
                     area: ['50vw', '70vh'],
-                    offset: ['15vh', '25vw']
+                    offset: ['15vh', '25vw'],
+                    zindex:20001111
                 });
             },
             error: function (xml) {

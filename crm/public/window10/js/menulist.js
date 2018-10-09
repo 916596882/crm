@@ -697,6 +697,7 @@ layui.config({
     function deleteMenu(ids, obj) {
         layer.confirm('确认删除【' + obj.data.product_name + '】吗？',function(index){
             layer.close(index);
+            console.log(obj);
         })
     }
     //表格刷新

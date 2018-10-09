@@ -695,22 +695,9 @@ layui.config({
     }
     //删除菜单
     function deleteMenu(ids, obj) {
-        console.log(obj);return false;
-        var msg = obj ? '确认删除菜单【' + obj.data.name + '】吗？' : '确认删除选中数据吗？';
-        top.winui.window.confirm(msg, { icon: 3, title: '删除系统菜单' }, function (index) {
+        layer.confirm('确认删除【' + obj.data.product_name + '】吗？',function(index){
             layer.close(index);
-
-            msg('删除成功', {
-                icon: 1,
-                time: 2000
-            });
-            //刷新表格
-            if (obj) {
-                obj.del(); //删除对应行（tr）的DOM结构
-            } else {
-                reloadTable();  //直接刷新表格
-            }
-        });
+        })
     }
     //表格刷新
     function reloadTable() {

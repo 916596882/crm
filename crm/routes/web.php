@@ -119,10 +119,10 @@ Route::any('userAdd','Admin\User@userAdd');
 
 
 //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-//市
+//三级联动
 Route::any('finds','Admin\User@finds');
-
-
+//用户添加
+Route::any('insert','Admin\User@insert');
 
 
 

@@ -20,12 +20,19 @@ class User extends Common
         $where = [
             'area_parent_id' => 0
         ];
+        //省
         $arr = DB::table('shop_area')->where($where)->get();
         $info = json_decode(json_encode($arr),true);
-        return view('User/userAdd',['parent'=>$info]);
+        //产品
+        $where = [
+            'product_status' => 1
+        ];
+        $data = DB::table('product')->where($where)->get();
+        $data = json_decode(json_encode($data),true);
+        return view('User/userAdd',['parent'=>$info,'product'=>$data]);
     }
 
-    //市
+    //三级联动
     function finds(){
         $val = Input::get('val');
         $where = [
@@ -34,6 +41,26 @@ class User extends Common
         $arr = DB::table('shop_area')->where($where)->get();
         $info = json_decode(json_encode($arr),true);
         return json_encode(['info'=>$info]);
+    }
+
+    //用户添加
+    function insert(){
+        $data = Input::post();
+        unset($data['_token']);
+        $insert = [];
+        $insert['user_name'] = $data['username'];
+        $insert['user_phone'] = $data['usertel'];
+        $insert['user_province'] = $data['province'];
+        $insert['user_city'] = $data['city'];
+        $insert['user_area'] = $data['area'];
+        $insert['address'] = $data['text'];
+        $insert['ctime'] = time();
+        $insert['position_name'] = $data['position'];
+        $insert['product_id'] = $data['product'];
+        $res = DB::table('user')->insert($insert);
+        if($res){
+            return json_encode(['status'=> 100]);
+        }
     }
 
 

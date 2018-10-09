@@ -64,6 +64,16 @@ class Tail extends Common
      */
     public function tailAdd()
     {
+
+//        $where=[
+//            'status'=>1
+//        ];
+//        $tail_info= DB::table('tail_order')->where($where)->get();
+//        $tail_info=json_decode(json_encode($tail_info),true);
+////        print_r($tail_info);exit;
+//        foreach($tail_info as $k=>&$v){
+//            $v['utime']=date('Y-m-d H:i:s',$v['utime']);
+//        }
         return view('Tail/tailAdd');
     }
 

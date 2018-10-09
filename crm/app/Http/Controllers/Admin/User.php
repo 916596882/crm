@@ -55,12 +55,66 @@ class User extends Common
         $insert['user_area'] = $data['area'];
         $insert['address'] = $data['text'];
         $insert['ctime'] = time();
+        $insert['status'] = 1;
         $insert['position_name'] = $data['position'];
         $insert['product_id'] = $data['product'];
         $res = DB::table('user')->insert($insert);
         if($res){
             return json_encode(['status'=> 100]);
         }
+    }
+
+    //用户列表
+    public function userLists(){
+//            {
+//                "code": 0,
+//                "msg": "",
+//                "count": 1000,
+//                "data": [{}, {}]
+//            }
+        $userWhere = [
+            'status' => 1
+        ];
+        $arr = DB::table('user')
+            ->join('product','product.product_id','=','user.product_id')
+            ->where($userWhere)
+            ->get();
+        //商品和用户信息
+        $arr = json_decode(json_encode($arr),true);
+        $new = [];
+        foreach($arr as $k=>$v){
+            $new[] = $v['user_province'];
+            $new[] = $v['user_city'];
+            $new[] = $v['user_area'];
+        }
+        $area = DB::table('shop_area')->whereIn('id',$new)->get();
+        $area = json_decode(json_encode($area),true);
+        $array = [];
+        foreach($area as $k=>$v){
+            $array[$v['id']] = $v['area_name'];
+        }
+        foreach($arr as $k=>$v){
+//            if($v['user_province']==$array[$k]){
+//                $arr[$k]['province'] = $array[$v];
+//            }
+//            if($v['user_city']==$array[$k]){
+//                $arr[$k]['city'] = $array[$v];
+//            }
+//            if($v['user_area']==$array[$k]){
+//                $arr[$k]['area'] = $array[$v];
+//            }
+            $arr[$k]['user_province'] = $array[$v['user_province']];
+            $arr[$k]['user_city'] = $array[$v['user_city']];
+            $arr[$k]['user_area'] = $array[$v['user_area']];
+        }
+        $count = DB::table('user')->where($userWhere)->count();
+        $data = [
+            'code' => 0,
+            'msg' => '',
+            'count' => $count,
+            'data' => $arr
+        ];
+        return $data;
     }
 
 

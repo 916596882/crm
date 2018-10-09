@@ -10,17 +10,17 @@
 <body>
 <div class="winui-toolbar">
     <div class="winui-tool">
-        <button id="reloadTable" class="winui-toolbtn"><i class="fa fa-refresh" aria-hidden="true"></i>刷新数据</button>
+        <button id="reloadTable"class="winui-toolbtn"><i class="fa fa-refresh" aria-hidden="true" ></i><a href="javascript:location.replace(location.href);">刷新数据</a></button>
         <button id="tailAdd" class="winui-toolbtn"><i class="fa fa-plus" aria-hidden="true"></i>新增菜单</button>
-        <button id="editMenu" class="winui-toolbtn"><i class="fa fa-pencil" aria-hidden="true"></i>编辑菜单</button>
+        {{--<button id="editMenu" class="winui-toolbtn"><i class="fa fa-pencil" aria-hidden="true"></i>编辑菜单</button>--}}
         <button id="deleteMenu" class="winui-toolbtn"><i class="fa fa-trash" aria-hidden="true"></i>删除选中</button>
     </div>
 </div>
 <div style="margin:auto 10px;">
     <table id="tail" lay-filter="menutable"></table>
     <script type="text/html" id="barMenu">
-        <a class="layui-btn layui-btn-xs" lay-event="setting">权限设置</a>
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        {{--<a class="layui-btn layui-btn-xs" lay-event="setting">权限设置</a>--}}
+        {{--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--}}
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
     {{--<script type="text/html" id="openTypeTpl">--}}
@@ -45,5 +45,7 @@
         base: '/window10/js/'
     }).use('menulist');
 </script>
+
+
 </body>
 </html>

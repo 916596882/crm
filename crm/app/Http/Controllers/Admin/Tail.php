@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-
 class Tail extends Common
 {
     /**
@@ -22,12 +21,14 @@ class Tail extends Common
      * 执行跟踪订单
      */
     public function tailListDo(){
+
         $where=[
             'status'=>1
         ];
-        $tail_info= DB::table('tail_order')->where($where)->get();
+        $limit=input::get('limit');
+        $page=input::get('page');
+        $tail_info= DB::table('tail_order')->where($where)->forPage($page,$limit)->get();
         $tail_info=json_decode(json_encode($tail_info),true);
-//        print_r($tail_info);exit;
         foreach($tail_info as $k=>&$v){
             $v['utime']=date('Y-m-d H:i:s',$v['utime']);
             if($v['tail_status']==1){
@@ -64,18 +65,26 @@ class Tail extends Common
      */
     public function tailAdd()
     {
+        if(! request()->ajax() || ! request()->isMethod('post')){
+            return view('Tail.tailAdd');
+        }else{
+            $info=input::post();
+            $info['utime']=strtotime($info['utime']);
+            unset($info['_token']);
+            session('admin_info');
 
-//        $where=[
-//            'status'=>1
-//        ];
-//        $tail_info= DB::table('tail_order')->where($where)->get();
-//        $tail_info=json_decode(json_encode($tail_info),true);
-////        print_r($tail_info);exit;
-//        foreach($tail_info as $k=>&$v){
-//            $v['utime']=date('Y-m-d H:i:s',$v['utime']);
-//        }
-        return view('Tail/tailAdd');
-    }
+            $info['ctime']=time();
+//            print_r($info);exit;
+            $res=DB::table('tail_order')->insert($info);
+                if($res > 0){
+                    return parent::success('添加成功');
+                }else{
+                    return parent::error('添加失败');
+                }
+            }
+        }
+
+
 
 
 }

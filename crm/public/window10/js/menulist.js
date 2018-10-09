@@ -43,7 +43,7 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#tail',
-        url: 'tailListDo',
+        url: '/tailListDo',
         //url: '',
 
         //height: 'full-65', //自适应高度
@@ -52,15 +52,15 @@ layui.config({
         //even:true,  //隔行变色
         page: true,
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
-        limit: 10,
+        limit: 3,
         cols: [[
             { field: 'tail_id', type: 'checkbox' },
             { field: 'tail_id', title: '跟踪id', width: 80 },
             { field: 'tail_status', title: '跟踪状态', width: 120 },
-            { field: 'contents', title: '跟踪详情', width: 120 },
+            { field: 'contents', title: '跟踪详情', width: 120, edit: 'text' },
             { field: 'tail_pay', title: '跟踪方式', width: 120, templet: '#openTypeTpl' },
             { field: 'utime', title: '下次联系时间', width: 120, templet: '#openTypeTpl' },
-            { field: 'admin_id', title: '用户id', width: 100, templet: '#isNecessary' },
+            //{ field: 'admin_id', title:  '用户id', width: 100, templet: '#isNecessary' },
             //{ field: 'order', title: '排序', width: 80, edit: 'text' },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
@@ -303,10 +303,12 @@ layui.config({
             }
         });
     }
+
     //表格刷新
     function reloadTable() {
         table.reload(tableId, {});
     }
+
     //绑定工具栏添加按钮事件
     //添加产品
     $('#productAdd').on('click', function () {

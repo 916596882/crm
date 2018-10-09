@@ -85,6 +85,26 @@ class Tail extends Common
         }
 
 
+    /**
+     * 即点即改
+     */
+    public function tailSave(){
+        $new_info=input::get();
+//        print_r($new_info);exit;
+        $where=[
+            'tail_id'=>$new_info['id']
+        ];
+        $save=[
+            'contents'=>$new_info['order']
+        ];
+       $res= DB::table('tail_order')->where($where)->update($save);
+        if($res > 0){
+            return parent::success('修改成功');
+        }else{
+            return parent::error('修改失败');
+        }
+    }
+
 
 
 }

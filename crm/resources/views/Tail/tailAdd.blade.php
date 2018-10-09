@@ -80,6 +80,7 @@
                     success: function (json_info) {
                         if (json_info.status==1000) {
                             msg(json_info.msg);
+                            winui.window.close('tailAdd');
                         } else {
                             msg(json_info.msg)
                         }

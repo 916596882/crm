@@ -53,13 +53,14 @@ layui.config({
         page: true,
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
         limit: 3,
+        //filter:'test',
         cols: [[
-            { field: 'tail_id', type: 'checkbox' },
+            { field: 'tail', type: 'checkbox' },
             { field: 'tail_id', title: '跟踪id', width: 80 },
             { field: 'tail_status', title: '跟踪状态', width: 120 },
             { field: 'contents', title: '跟踪详情', width: 120, edit: 'text' },
             { field: 'tail_pay', title: '跟踪方式', width: 120, templet: '#openTypeTpl' },
-            { field: 'utime', title: '下次联系时间', width: 120, templet: '#openTypeTpl' },
+            { field: 'utime', title: '下次联系时间', width: 200, templet: '#openTypeTpl' },
             //{ field: 'admin_id', title:  '用户id', width: 100, templet: '#isNecessary' },
             //{ field: 'order', title: '排序', width: 80, edit: 'text' },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
@@ -611,28 +612,31 @@ layui.config({
         }
     });
 
-    // todo 监听跟踪订单单元格编辑
+    // todo 监听跟踪订单单元格编辑    监听跟
     table.on('edit(tail)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-        if (/^[0-9]+$/.test(obj.value)) {
+        if (/^.*/.test(obj.value)) {
             var index = layer.load(1);
             $.ajax({
-                type: 'post',
-                url: 'views/menu/updatemenuorder',
-                data: { "id": obj.data.id, "order": obj.value },
-                success: function (json) {
+                type: 'get',
+                url: 'tailSave',
+                data: { "id": obj.data.tail_id, "order": obj.value},
+                async: false,
+                dataType: 'json',
+                success: function (json_info) {
                     layer.close(index);
-                    if (!json.isSucceed) {
-                        msg(json.message);
+                    if (json_info.status==1000) {
+                        //msg('[id: '+ data.id +'] ' + order + ' 字段更改为：'+ value);
+                        msg(json_info.msg);
+                    }else{
+                        msg(json_info.msg);
                     }
-                },
-                error: function (xml) {
-                    layer.close(index);
-                    msg("修改失败", {
-                        icon: 2,
-                        time: 2000
-                    });
-                    console.log(xml.responseText);
                 }
+
+                //        icon: 2,
+                //        time: 2000
+                //    });
+                //    console.log(xml.responseText);
+                //}
             });
         }
     });

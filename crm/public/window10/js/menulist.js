@@ -18,7 +18,7 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#user',
-        url: '/window10/json/menulist.json',
+        url: '/userLists',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
         //skin: '',   //边框风格，可选值line row nob
@@ -28,13 +28,18 @@ layui.config({
         limit: 10,
         cols: [[
             { field: 'id', type: 'checkbox' },
-            { field: 'icon', title: '图标', width: 120 },
-            { field: 'name', title: '名称', width: 150 },
-            { field: 'title', title: '标题', width: 150 },
-            { field: 'pageURL', title: '页面地址', width: 200 },
-            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
-            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
-            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { field: 'user_name', title: '姓名', width: 120 },
+            { field: 'user_phone', title: '电话', width: 150 },
+            { field: 'product_name', title: '产品', width: 150 },
+            { field: 'user_province', title: '省', width: 200 },
+            { field: 'user_city', title: '市', width: 200 },
+            { field: 'user_area', title: '区', width: 200 },
+            { field: 'address', title: '具体地址', width: 200 },
+            { field: 'position_name', title: '岗位', width: 200 },
+            //{ field: 'openType', title: '市', width: 120, templet: '#openTypeTpl' },
+            //{ field: 'openType', title: '区', width: 120, templet: '#openTypeTpl' },
+            //{ field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
+            //{ field: 'order', title: '排序', width: 80, edit: 'text' },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
     });

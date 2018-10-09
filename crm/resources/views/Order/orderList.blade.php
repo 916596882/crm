@@ -17,7 +17,7 @@
     </div>
 </div>
 <div style="margin:auto 10px;">
-    <table id="order" lay-filter="menutable"></table>
+    <table id="order" lay-filter="order"></table>
     <script type="text/html" id="barMenu">
         <a class="layui-btn layui-btn-xs" lay-event="setting">权限设置</a>
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>

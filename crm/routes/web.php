@@ -63,8 +63,8 @@ Route::any('userList','Admin\User@userList');
 Route::any('userAdd','Admin\User@userAdd');
 
 //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-
-
+//所有的删除
+Route::any('delete','Admin\Common@delete_info');
 
 
 

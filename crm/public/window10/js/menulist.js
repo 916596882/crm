@@ -201,8 +201,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'productDel') { //删除
+            deleteMenu('product', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -242,8 +242,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'adminDel') { //删除
+            deleteMenu('admin', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -283,8 +283,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'afterDel') { //删除
+            deleteMenu('after', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -324,8 +324,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'costDel') { //删除
+            deleteMenu('cost', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -365,8 +365,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'orderDel') { //删除
+            deleteMenu('order', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -406,8 +406,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'tailDel') { //删除
+            deleteMenu('user', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -447,8 +447,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'userDel') { //删除
+            deleteMenu('tail_order', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -700,9 +700,41 @@ layui.config({
         });
     }
     //删除菜单
-    function deleteMenu(ids, obj) {
+    function deleteMenu(mark, obj) {
         layer.confirm('确认删除【' + obj.data.product_name + '】吗？',function(index){
             layer.close(index);
+            if(mark == 'product'){
+                var id = obj.data.product_id;
+            }else if(mark == 'admin'){
+                var id = obj.data.admin_id;
+            }else if(mark == 'after'){
+                var id = obj.data.after_id;
+            }else if(mark == 'tail_order'){
+                var id = obj.data.tail_id;
+            }else if(mark == 'cost'){
+                var id = obj.data.cost_id;
+            }else if(mark == 'order'){
+                var id = obj.data.order_id;
+            }else if(mark == 'user'){
+                var id = obj.data.user_id;
+            }
+
+            $.ajax({
+                url:'delete',
+                data:'mark='+mark+'&id='+id,
+                type:'get',
+                dataType:'json',
+                success:function(json_info){
+                    if(json_info.status == 1000){
+                        msg(json_info.msg);
+                        msg('数据请求中',{icon:6,time:1000},function(){
+                            $(".layui-laypage-btn")[0].click();
+                        });
+                    }else{
+                        msg(json_info.msg);
+                    }
+                }
+            });
         })
     }
 

@@ -19,9 +19,15 @@
 <div style="margin:auto 10px;">
     <table id="tail" lay-filter="tail"></table>
     <script type="text/html" id="barMenu">
+<<<<<<< HEAD
+        <a class="layui-btn layui-btn-xs" lay-event="setting">权限设置</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="tailDel">删除</a>
+=======
         {{--<a class="layui-btn layui-btn-xs" lay-event="setting">权限设置</a>--}}
         {{--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--}}
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+>>>>>>> fa485de2c2941f90a5e178b4bca4fb1ec414b4df
     </script>
     {{--<script type="text/html" id="openTypeTpl">--}}
     {{--{{#  if(d.openType == 1){ }}--}}

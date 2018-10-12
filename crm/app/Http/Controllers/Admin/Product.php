@@ -18,7 +18,7 @@ class Product extends Common
         }else{
             $limit = Input::get('limit');
             $page = Input::get('page');
-            $product_data = DB::table('product')->forPage($page,$limit)->get()->toArray();
+            $product_data = DB::table('product')->where(['product_status' => 1])->forPage($page,$limit)->get()->toArray();
             $product_data = json_decode(json_encode($product_data),true);
             foreach($product_data as $k => &$v){
                 $v['ctime'] = date('Y-m-d H:i:s',$v['ctime']);

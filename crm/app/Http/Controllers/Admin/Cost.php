@@ -17,7 +17,34 @@ class Cost extends Common
         return view('Cost/costList');
     }
 
+    /**
+     *执行费用
+     */
+    public function costListDo()
+    {
+        $where = [
+            'status' => 1
+        ];
+        $limit = input::get('limit');
+        $page = input::get('page');
+        $cost_info = DB::table('cost')->where($where)->forPage($page, $limit)->get();
+        $cost_info = json_decode(json_encode($cost_info), true);
+        foreach ($cost_info as $k => &$v) {
+            $v['utime'] = date('Y-m-d H:i:s', $v['utime']);
+        }
+        //总条数
+        $cost_count=DB::table('cost')->where($where)->count();
+//        echo $tail_count;EXIT;
 
+        $arr=[
+            'code'=>0,
+            'msg'=>'success',
+            'count'=>$cost_count,
+            'data'=>$cost_info
+        ];
+        echo json_encode($arr);exit;
+
+    }
 
     /**
      * 费用添加

@@ -123,8 +123,8 @@ Route::any('delete','Admin\Common@delete_info');
 Route::any('finds','Admin\User@finds');
 //用户添加
 Route::any('insert','Admin\User@insert');
-
-
+//用户列表userList
+Route::any('userLists','Admin\User@userLists');
 
 
 
@@ -189,3 +189,6 @@ Route::any('insert','Admin\User@insert');
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
 //执行跟踪订单
 Route::any('tailListDo','Admin\Tail@tailListDo');
+
+//跟踪订单即点即改
+Route::any('tailSave','Admin\Tail@tailSave');

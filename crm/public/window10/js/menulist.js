@@ -18,7 +18,7 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#user',
-        url: '/window10/json/menulist.json',
+        url: '/userLists',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
         //skin: '',   //边框风格，可选值line row nob
@@ -28,13 +28,18 @@ layui.config({
         limit: 10,
         cols: [[
             { field: 'id', type: 'checkbox' },
-            { field: 'icon', title: '图标', width: 120 },
-            { field: 'name', title: '名称', width: 150 },
-            { field: 'title', title: '标题', width: 150 },
-            { field: 'pageURL', title: '页面地址', width: 200 },
-            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
-            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
-            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { field: 'user_name', title: '姓名', width: 120 },
+            { field: 'user_phone', title: '电话', width: 150 },
+            { field: 'product_name', title: '产品', width: 150 },
+            { field: 'user_province', title: '省', width: 200 },
+            { field: 'user_city', title: '市', width: 200 },
+            { field: 'user_area', title: '区', width: 200 },
+            { field: 'address', title: '具体地址', width: 200 },
+            { field: 'position_name', title: '岗位', width: 200 },
+            //{ field: 'openType', title: '市', width: 120, templet: '#openTypeTpl' },
+            //{ field: 'openType', title: '区', width: 120, templet: '#openTypeTpl' },
+            //{ field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
+            //{ field: 'order', title: '排序', width: 80, edit: 'text' },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
     });
@@ -43,7 +48,7 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#tail',
-        url: 'tailListDo',
+        url: '/tailListDo',
         //url: '',
 
         //height: 'full-65', //自适应高度
@@ -52,15 +57,16 @@ layui.config({
         //even:true,  //隔行变色
         page: true,
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
-        limit: 10,
+        limit: 3,
+        //filter:'test',
         cols: [[
-            { field: 'tail_id', type: 'checkbox' },
+            { field: 'tail', type: 'checkbox' },
             { field: 'tail_id', title: '跟踪id', width: 80 },
             { field: 'tail_status', title: '跟踪状态', width: 120 },
-            { field: 'contents', title: '跟踪详情', width: 120 },
+            { field: 'contents', title: '跟踪详情', width: 120, edit: 'text' },
             { field: 'tail_pay', title: '跟踪方式', width: 120, templet: '#openTypeTpl' },
-            { field: 'utime', title: '下次联系时间', width: 120, templet: '#openTypeTpl' },
-            { field: 'admin_id', title: '用户id', width: 100, templet: '#isNecessary' },
+            { field: 'utime', title: '下次联系时间', width: 200, templet: '#openTypeTpl' },
+            //{ field: 'admin_id', title:  '用户id', width: 100, templet: '#isNecessary' },
             //{ field: 'order', title: '排序', width: 80, edit: 'text' },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
@@ -611,28 +617,31 @@ layui.config({
         }
     });
 
-    // todo 监听跟踪订单单元格编辑
+    // todo 监听跟踪订单单元格编辑    监听跟
     table.on('edit(tail)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-        if (/^[0-9]+$/.test(obj.value)) {
+        if (/^.*/.test(obj.value)) {
             var index = layer.load(1);
             $.ajax({
-                type: 'post',
-                url: 'views/menu/updatemenuorder',
-                data: { "id": obj.data.id, "order": obj.value },
-                success: function (json) {
+                type: 'get',
+                url: 'tailSave',
+                data: { "id": obj.data.tail_id, "order": obj.value},
+                async: false,
+                dataType: 'json',
+                success: function (json_info) {
                     layer.close(index);
-                    if (!json.isSucceed) {
-                        msg(json.message);
+                    if (json_info.status==1000) {
+                        //msg('[id: '+ data.id +'] ' + order + ' 字段更改为：'+ value);
+                        msg(json_info.msg);
+                    }else{
+                        msg(json_info.msg);
                     }
-                },
-                error: function (xml) {
-                    layer.close(index);
-                    msg("修改失败", {
-                        icon: 2,
-                        time: 2000
-                    });
-                    console.log(xml.responseText);
                 }
+
+                //        icon: 2,
+                //        time: 2000
+                //    });
+                //    console.log(xml.responseText);
+                //}
             });
         }
     });
@@ -731,10 +740,12 @@ layui.config({
             });
         })
     }
+
     //表格刷新
     function reloadTable() {
         table.reload(tableId, {});
     }
+
     //绑定工具栏添加按钮事件
     //添加产品
     $('#productAdd').on('click', function () {

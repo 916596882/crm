@@ -406,7 +406,7 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'tailDel') { //删除
+        if (layEvent === 'userDel') { //删除
             deleteMenu('user', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
@@ -447,7 +447,7 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'userDel') { //删除
+        if (layEvent === 'tailDel') { //删除
             deleteMenu('tail_order', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);

@@ -40,12 +40,17 @@ class Common extends Controller
      */
     public function delete_info(){
         $post = Input::get();
-        if(!empty($post['tail_order'])){
-            $post['tail'] = $post['id'];
+        if(!empty($post['mark'] == 'tail_order')){
+            $post['mark'] = 'tail';
+            $num = DB::table($post['mark'].'_order')
+                ->where([$post['mark'].'_id' => $post['id']])
+                ->update([$post['mark'].'_status' => 4]);
+        }else{
+            $num = DB::table($post['mark'])
+                ->where([$post['mark'].'_id' => $post['id']])
+                ->update([$post['mark'].'_status' => 4]);
         }
-        $num = DB::table($post['mark'])
-            ->where([$post['mark'].'_id' => $post['id']])
-            ->update([$post['mark'].'_status' => 4]);
+
         if($num > 0){
             return $this->success('删除成功');
         }else{

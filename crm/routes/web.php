@@ -192,3 +192,7 @@ Route::any('tailListDo','Admin\Tail@tailListDo');
 
 //跟踪订单即点即改
 Route::any('tailSave','Admin\Tail@tailSave');
+
+//费用添加
+Route::any('addCost','Admin\Cost@addCost');
+

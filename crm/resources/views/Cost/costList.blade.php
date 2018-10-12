@@ -10,7 +10,7 @@
 <body>
 <div class="winui-toolbar">
     <div class="winui-tool">
-        <button id="reloadTable" class="winui-toolbtn"><i class="fa fa-refresh" aria-hidden="true"></i>刷新数据</button>
+        <button id="reloadTable" class="winui-toolbtn"><i class="fa fa-refresh" aria-hidden="true"></i><a href="javascript:location.replace(location.href);">刷新数据</a></button>
         <button id="addCost" class="winui-toolbtn"><i class="fa fa-plus" aria-hidden="true"></i>新增菜单</button>
         <button id="editMenu" class="winui-toolbtn"><i class="fa fa-pencil" aria-hidden="true"></i>编辑菜单</button>
         <button id="deleteMenu" class="winui-toolbtn"><i class="fa fa-trash" aria-hidden="true"></i>删除选中</button>

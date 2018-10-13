@@ -76,7 +76,7 @@ Route::any('autoProduct','Admin\Cost@autoProduct');
 Route::any('createOrder','Admin\Order@createOrder');
 
 
-
+Route::any('orderList','Admin\Order@orderList');
 
 
 

@@ -55,7 +55,6 @@ class User extends Common
         $insert['user_area'] = $data['area'];
         $insert['address'] = $data['text'];
         $insert['ctime'] = time();
-        $insert['status'] = 1;
         $insert['position_name'] = $data['position'];
         $insert['product_id'] = $data['product'];
         $res = DB::table('user')->insert($insert);

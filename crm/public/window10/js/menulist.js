@@ -98,7 +98,7 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#order',
-        url: '/window10/json/menulist.json',
+        url: 'orderList',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
         //skin: '',   //边框风格，可选值line row nob
@@ -107,14 +107,12 @@ layui.config({
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
         limit: 10,
         cols: [[
-            { field: 'id', type: 'checkbox' },
-            { field: 'icon', title: '图标', width: 120 },
-            { field: 'name', title: '名称', width: 150 },
-            { field: 'title', title: '标题', width: 150 },
-            { field: 'pageURL', title: '页面地址', width: 200 },
-            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
-            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
-            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { field: 'order_id', },
+            { field: 'order_no', title: '订单号', width: 120 },
+            { field: 'user_id', title: '用户', width: 150 },
+            { field: 'order_amount', title: '订单金额', width: 150 },
+            { field: 'product_name', title: '产品', width: 120, templet: '#openTypeTpl' },
+            { field: 'ctime', title: '添加时间', width: 200 },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
     });

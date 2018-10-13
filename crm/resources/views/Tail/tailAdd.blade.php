@@ -1,6 +1,18 @@
 <div style="width:600px;margin:0 auto;padding-top:20px;">
     <form class="layui-form" action="">
         <div class="layui-form-item">
+            <label class="layui-form-label">用户名称</label>
+            <div class="layui-input-block">
+                <select name="user_id">
+                    <option value="0">请选择用户名称</option>
+                    @foreach($user_info as $v)
+                        <option value="{{$v['user_id']}}">{{$v['user_name']}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <label class="layui-form-label">订单进度</label>
             <div class="layui-input-block">
                 <select name="tail_status">

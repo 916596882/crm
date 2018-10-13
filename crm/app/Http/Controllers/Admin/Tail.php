@@ -23,12 +23,20 @@ class Tail extends Common
     public function tailListDo(){
 
         $where=[
-            'status'=>1
+            'user.status'=>1
         ];
         $limit=input::get('limit');
         $page=input::get('page');
-        $tail_info= DB::table('tail_order')->where($where)->forPage($page,$limit)->get();
+
+        $tail_info = DB::table('tail_order')
+            ->join('user','user.user_id','=','tail_order.user_id')
+            ->where($where)
+            ->forPage($page,$limit)
+            ->get();
+
+//        $tail_info= DB::table('tail_order')->where($where)->forPage($page,$limit)->get();
         $tail_info=json_decode(json_encode($tail_info),true);
+//        print_r($tail_info);exit;
         foreach($tail_info as $k=>&$v){
             $v['utime']=date('Y-m-d H:i:s',$v['utime']);
             if($v['tail_status']==1){
@@ -47,7 +55,8 @@ class Tail extends Common
 
         }
         //总条数
-        $tail_count=DB::table('tail_order')->where($where)->count();
+
+        $tail_count=DB::table('tail_order')->where(['status'=>1])->count();
 //        echo $tail_count;EXIT;
 
         $arr=[
@@ -66,9 +75,16 @@ class Tail extends Common
     public function tailAdd()
     {
         if(! request()->ajax() || ! request()->isMethod('post')){
-            return view('Tail.tailAdd');
+            $where=[
+                'status'=>1
+            ];
+            $user_info= DB::table('user')->where($where)->get();
+            $user_info=json_decode(json_encode($user_info),true);
+//            print_r($user_info);
+            return view('Tail.tailAdd',['user_info'=>$user_info]);
         }else{
             $info=input::post();
+//            print_r($info);exit;
             $info['utime']=strtotime($info['utime']);
             unset($info['_token']);
             session('admin_info');

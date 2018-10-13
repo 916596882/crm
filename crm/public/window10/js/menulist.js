@@ -62,6 +62,7 @@ layui.config({
         cols: [[
             { field: 'tail', type: 'checkbox' },
             { field: 'tail_id', title: '跟踪id', width: 80 },
+            { field: 'user_name', title: '用户名称', width: 80 },
             { field: 'tail_status', title: '跟踪状态', width: 120 },
             { field: 'contents', title: '跟踪详情', width: 120, edit: 'text' },
             { field: 'tail_pay', title: '跟踪方式', width: 120, templet: '#openTypeTpl' },

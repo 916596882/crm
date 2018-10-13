@@ -6,6 +6,7 @@
     <link href="/window10/lib/layui/css/layui.css" rel="stylesheet" />
     <link href="/window10/lib/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link href="/window10/lib/winui/css/winui.css" rel="stylesheet" />
+
 </head>
 <body>
 <div class="winui-toolbar">
@@ -19,8 +20,8 @@
 <div style="margin:auto 10px;">
     <table id="user" lay-filter="user"></table>
     <script type="text/html" id="barMenu">
-        <a class="layui-btn layui-btn-xs" lay-event="setting">权限设置</a>
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        {{--<a class="layui-btn layui-btn-xs" lay-event="setting">权限设置</a>--}}
+        {{--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--}}
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
     {{--<script type="text/html" id="openTypeTpl">--}}
@@ -40,6 +41,7 @@
     <div class="tips">Tips：1.系统菜单不可以删除 2.修改或添加数据后暂不支持自动刷新表格</div>
 </div>
 <script src="/window10/lib/layui/layui.js"></script>
+<script src = "./jquery-3.2.1.min.js"  ></script>
 <script type="text/javascript">
     layui.config({
         base: '/window10/js/'

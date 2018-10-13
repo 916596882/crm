@@ -25,10 +25,10 @@ layui.config({
         //even:true,  //隔行变色
         page: true,
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
-        limit: 10,
+        limit: 3,
         cols: [[
             { field: 'id', type: 'checkbox' },
-            { field: 'user_name', title: '姓名', width: 120 },
+            { field: 'user_name', title: '姓名', width: 120,edit:'user' },
             { field: 'user_phone', title: '电话', width: 150 },
             { field: 'product_name', title: '产品', width: 150 },
             { field: 'user_province', title: '省', width: 200 },
@@ -172,23 +172,24 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#after',
-        url: '/window10/json/menulist.json',
+        url: '/afterListDo',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
         //skin: '',   //边框风格，可选值line row nob
         //even:true,  //隔行变色
+        //page: true,
+        //limits: [10, 20, 30, 40, 50, 60, 70, 100],
+        //limit: 10,
         page: true,
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
-        limit: 10,
+        limit: 3,
         cols: [[
-            { field: 'id', type: 'checkbox' },
-            { field: 'icon', title: '图标', width: 120 },
-            { field: 'name', title: '名称', width: 150 },
-            { field: 'title', title: '标题', width: 150 },
-            { field: 'pageURL', title: '页面地址', width: 200 },
-            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
-            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
-            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { field: 'after_id', type: 'checkbox' },
+            { field: 'user_name', title: '用户名称', width: 120 },
+            { field: 'status', title: '是否处理', width: 200 },
+            { field: 'position_name', title: '用户岗位', width: 150 },
+            { field: 'product_name', title: '处理产品', width: 150 },
+            { field: 'text', title: '退货理由', width: 150,edit: 'after' },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
     });
@@ -540,28 +541,32 @@ layui.config({
 
     // todo 监听售后单元格编辑
     table.on('edit(after)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-        if (/^[0-9]+$/.test(obj.value)) {
-            var index = layer.load(1);
-            $.ajax({
-                type: 'post',
-                url: 'views/menu/updatemenuorder',
-                data: { "id": obj.data.id, "order": obj.value },
-                success: function (json) {
+        //console.log($(this).eq(0).val());
+        //funs();
+        //console.log($);
+        var val = obj.value;
+            if(val==''){
+                layer.msg('不能为空！',{time:1000,shade:[0.3,'#ccc']},function( index ){
                     layer.close(index);
-                    if (!json.isSucceed) {
-                        msg(json.message);
-                    }
-                },
-                error: function (xml) {
-                    layer.close(index);
-                    msg("修改失败", {
-                        icon: 2,
-                        time: 2000
+                    $(".layui-laypage-btn")[0].click();
+                });
+                return false;
+            }
+        $.ajax({
+            'url':'/afterUpdate',
+            'data' :'field='+obj.field+'&val='+obj.value+'&id='+obj.data.user_id+'&after_id='+obj.data.after_id,
+            'dataType' :'json',
+            'type':'get',
+            success:function( json_data ){
+                if(json_data.status==1){
+                    layer.msg(json_data.msg,{time:1000,shade:[0.3,'#ccc']},function( index ){
+                        layer.close(index);
+                        $(".layui-laypage-btn")[0].click();
                     });
-                    console.log(xml.responseText);
+                    return false;
                 }
-            });
-        }
+            }
+        });
     });
 
     // todo 监听费用单元格编辑
@@ -644,28 +649,30 @@ layui.config({
 
     // todo 监听客户单元格编辑
     table.on('edit(user)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-        if (/^[0-9]+$/.test(obj.value)) {
-            var index = layer.load(1);
-            $.ajax({
-                type: 'post',
-                url: 'views/menu/updatemenuorder',
-                data: { "id": obj.data.id, "order": obj.value },
-                success: function (json) {
-                    layer.close(index);
-                    if (!json.isSucceed) {
-                        msg(json.message);
-                    }
-                },
-                error: function (xml) {
-                    layer.close(index);
-                    msg("修改失败", {
-                        icon: 2,
-                        time: 2000
-                    });
-                    console.log(xml.responseText);
-                }
+        var val = obj.value;
+        if(val==''){
+            layer.msg('不能为空！',{time:1000,shade:[0.3,'#ccc']},function( index ){
+                layer.close(index);
+                $(".layui-laypage-btn")[0].click();
             });
+            return false;
         }
+        $.ajax({
+            'url':'/userUpdate',
+            'data' :'field='+obj.field+'&val='+obj.value+'&id='+obj.data.user_id+'&user_id='+obj.data.user_id,
+            'dataType' :'json',
+            'type':'get',
+            success:function( json_data ){
+                if(json_data.status==1){
+                    layer.msg(json_data.msg,{time:1000,shade:[0.3,'#ccc']},function( index ){
+                        layer.close(index);
+                        $(".layui-laypage-btn")[0].click();
+                    });
+                    return false;
+                }
+            }
+        });
+            //console.log(213333333333);
     });
     //打开编辑窗口
     function openEditWindow(id) {

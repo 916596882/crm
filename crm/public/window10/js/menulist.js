@@ -486,28 +486,26 @@ layui.config({
     //    todo   监听单元格编辑
     // todo 监听产品单元格编辑
     table.on('edit(product)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-        if (/^[0-9]+$/.test(obj.value)) {
-            var index = layer.load(1);
+        if(obj.field == 'product_price' && !/^[0-9]+$/.test(obj.value)){
+            msg('格式不正确',{icon:5,time:1000},function(){
+                $(".layui-laypage-btn")[0].click();
+            });
+            return false;
+        }
             $.ajax({
-                type: 'post',
-                url: 'views/menu/updatemenuorder',
-                data: { "id": obj.data.id, "order": obj.value },
+                type: 'get',
+                url: 'productSave',
+                data: { "product_id": obj.data.product_id, "value": obj.value ,"field": obj.field},
                 success: function (json) {
-                    layer.close(index);
-                    if (!json.isSucceed) {
-                        msg(json.message);
+                    if(json.status == 1000){
+                        msg(json.msg,{icon:6,time:1000});
+                    }else{
+                        msg(json.msg,{icon:5,time:1000},function(){
+                            $('.layui-laypage-btn')[0].click();
+                        });
                     }
-                },
-                error: function (xml) {
-                    layer.close(index);
-                    msg("修改失败", {
-                        icon: 2,
-                        time: 2000
-                    });
-                    console.log(xml.responseText);
                 }
             });
-        }
     });
 
     // todo 监听管理员单元格编辑

@@ -66,8 +66,8 @@ Route::any('userAdd','Admin\User@userAdd');
 //所有的删除
 Route::any('delete','Admin\Common@delete_info');
 
-
-
+//产品修改
+Route::any('productSave','Admin\Product@productSave');
 
 
 

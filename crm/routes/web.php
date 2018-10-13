@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('Index.index');
+    return view('Login.login');
 });
 
 //登陆的视图页面
@@ -133,8 +133,10 @@ Route::any('afterListDo','Admin\After@afterListDo');
 Route::any('afterUpdate','Admin\After@afterUpdate');
 //用户修改userUpdate
 Route::any('userUpdate','Admin\User@userUpdate');
-
-
+//首页
+Route::any('index', function () {
+    return view('Index.index');
+});
 
 
 

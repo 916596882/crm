@@ -23,7 +23,7 @@ class Tail extends Common
     public function tailListDo(){
 
         $where=[
-            'user.status'=>1
+            'tail_order.tail_status'=>1
         ];
         $limit=input::get('limit');
         $page=input::get('page');
@@ -39,12 +39,12 @@ class Tail extends Common
 //        print_r($tail_info);exit;
         foreach($tail_info as $k=>&$v){
             $v['utime']=date('Y-m-d H:i:s',$v['utime']);
-            if($v['tail_status']==1){
-                $v['tail_status']='潜在客户';
+            if($v['status']==1){
+                $v['status']='潜在客户';
             }elseif($v['tail_status']==2){
-                $v['tail_status']='准备下单';
+                $v['status']='准备下单';
             }else{
-                $v['tail_status']='犹豫客户';
+                $v['status']='犹豫客户';
             }
 
             if($v['tail_pay']==1){
@@ -56,7 +56,7 @@ class Tail extends Common
         }
         //总条数
 
-        $tail_count=DB::table('tail_order')->where(['status'=>1])->count();
+        $tail_count=DB::table('tail_order')->where(['tail_status'=>1])->count();
 //        echo $tail_count;EXIT;
 
         $arr=[

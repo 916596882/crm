@@ -22,7 +22,7 @@ class Cost extends Common
     public function costListDo()
     {
         $where = [
-            'status' => 1
+            'cost_status' => 1
         ];
         $limit = input::get('limit');
         $page = input::get('page');
@@ -31,10 +31,10 @@ class Cost extends Common
 //        print_r($cost_info);exit;
         foreach ($cost_info as $k => &$v) {
             $v['ctime'] = date('Y-m-d H:i:s', $v['ctime']);
-            if($v['cost_status']==1){
-                $v['cost_status']='收入';
+            if($v['status']==1){
+                $v['status']='收入';
             }else{
-                $v['cost_status']='支出';
+                $v['status']='支出';
             }
         }
         //总条数

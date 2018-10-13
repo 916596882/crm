@@ -123,20 +123,21 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#cost',
-        url: '/costListDo',
+        url: 'costListDo',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
         //skin: '',   //边框风格，可选值line row nob
         //even:true,  //隔行变色
         page: true,
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
-        limit: 10,
+        limit: 3,
         cols: [[
             { field: 'cost_id', type: 'checkbox' },
             { field: 'company_name', title: '公司名称', width: 120 },
             { field: 'cost_amount', title: '总价钱', width: 150 },
             { field: 'content', title: '收支详情', width: 150 },
             { field: 'cost_status', title: '收支类型', width: 200 },
+            { field: 'ctime', title: '添加时间', width: 200 },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
     });

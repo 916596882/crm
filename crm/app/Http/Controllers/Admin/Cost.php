@@ -65,8 +65,6 @@ class Cost extends Common
             $info=input::post();
             unset($info['_token']);
             $info['ctime']=time();
-            $info['status']=1;
-
             $res=DB::table('cost')->insert($info);
             if($res > 0){
                 return parent::success('添加成功');
@@ -74,7 +72,16 @@ class Cost extends Common
                 return parent::error('添加失败');
             }
         }
+    }
 
+    //自动识别产品
+    public function autoProduct(){
+        $user_id = Input::post('user_id');
+        $user_data = (array)DB::table('user')->where(['user_id' => $user_id])->first();
+        $product_info = (array)DB::table('product')->where(['product_id' => $user_data['product_id']])->first();
+        return [
+            'product' => $product_info['product_name']
+        ];
     }
 
 }

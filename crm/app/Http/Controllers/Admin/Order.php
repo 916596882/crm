@@ -17,4 +17,11 @@ class Order extends Common
     }
 
 
+    /**
+     * 生成订单
+     */
+    public function createOrder(){
+
+    }
+
 }

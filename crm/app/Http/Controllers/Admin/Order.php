@@ -13,7 +13,25 @@ class Order extends Common
      * 订单列表
      */
     public function orderList(){
-        return view('Order/orderList');
+        if(! request()->ajax()){
+            return view('Order/orderList');
+        }else{
+            $limit = Input::get('limit');
+            $page = Input::get('page');
+            $order_data = DB::table('order')->where('order_status','<>',4)->forPage($page,$limit)->get()->toArray();
+            $order_data = json_decode(json_encode($order_data),true);
+            foreach($order_data as $k => &$v){
+                $obj = DB::table('user')->where(['user_id' => $v['user_id']])->select('user_name')->first();
+                $v['user_id'] = $obj->user_name;
+                $v['ctime'] = date('Y-m-d H:i:s',$v['ctime']);
+            }
+            return [
+                'code' => 0,
+                'msg' => '',
+                'count' => 1000,
+                'data' => $order_data
+            ];
+        }
     }
 
 

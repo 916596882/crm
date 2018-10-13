@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -29,8 +28,14 @@ class Cost extends Common
         $page = input::get('page');
         $cost_info = DB::table('cost')->where($where)->forPage($page, $limit)->get();
         $cost_info = json_decode(json_encode($cost_info), true);
+//        print_r($cost_info);exit;
         foreach ($cost_info as $k => &$v) {
-            $v['utime'] = date('Y-m-d H:i:s', $v['utime']);
+            $v['ctime'] = date('Y-m-d H:i:s', $v['ctime']);
+            if($v['cost_status']==1){
+                $v['cost_status']='收入';
+            }else{
+                $v['cost_status']='支出';
+            }
         }
         //总条数
         $cost_count=DB::table('cost')->where($where)->count();

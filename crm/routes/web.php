@@ -196,3 +196,6 @@ Route::any('tailSave','Admin\Tail@tailSave');
 //费用添加
 Route::any('addCost','Admin\Cost@addCost');
 
+//费用的展示
+Route::any('costListDo','Admin\Cost@costListDo');
+

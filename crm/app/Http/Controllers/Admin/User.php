@@ -75,7 +75,7 @@ class User extends Common
 //                "data": [{}, {}]
 //            }
         $userWhere = [
-            'status' => 1
+            'user_status' => 1
         ];
 
         $arr = DB::table('user')

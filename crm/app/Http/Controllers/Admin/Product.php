@@ -18,7 +18,7 @@ class Product extends Common
         }else{
             $limit = Input::get('limit');
             $page = Input::get('page');
-            $product_data = DB::table('product')->forPage($page,$limit)->get()->toArray();
+            $product_data = DB::table('product')->where('product_status','<>',4)->forPage($page,$limit)->get()->toArray();
             $product_data = json_decode(json_encode($product_data),true);
             foreach($product_data as $k => &$v){
                 $v['ctime'] = date('Y-m-d H:i:s',$v['ctime']);
@@ -48,6 +48,29 @@ class Product extends Common
             }else{
                 return parent::error('添加失败');
             }
+        }
+    }
+
+    /**
+     * 产品修改
+     */
+    public function productSave(){
+        $get = Input::get();
+        //查询要修改的产品名是否已经存在
+        $pro_info = DB::table('product')
+            ->where([$get['field'] => $get['value']])
+            ->first();
+        if(!empty($pro_info)){
+            return parent::error('产名品不能重复');
+        }
+        //执行修改
+        $num = DB::table('product')
+            ->where(['product_id' => $get['product_id']])
+            ->update([$get['field'] => $get['value']]);
+        if($num > 0){
+            return parent::success('修改成功');
+        }else{
+            return parent::error('修改失败');
         }
     }
 }

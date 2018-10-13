@@ -63,11 +63,11 @@ Route::any('userList','Admin\User@userList');
 Route::any('userAdd','Admin\User@userAdd');
 
 //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+//所有的删除
+Route::any('delete','Admin\Common@delete_info');
 
-
-
-
-
+//产品修改
+Route::any('productSave','Admin\Product@productSave');
 
 
 
@@ -191,3 +191,13 @@ Route::any('userUpdate','Admin\User@userUpdate');
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
 //执行跟踪订单
 Route::any('tailListDo','Admin\Tail@tailListDo');
+
+//跟踪订单即点即改
+Route::any('tailSave','Admin\Tail@tailSave');
+
+//费用添加
+Route::any('addCost','Admin\Cost@addCost');
+
+//费用的展示
+Route::any('costListDo','Admin\Cost@costListDo');
+

@@ -48,7 +48,7 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#tail',
-        url: 'tailListDo',
+        url: '/tailListDo',
         //url: '',
 
         //height: 'full-65', //自适应高度
@@ -57,15 +57,16 @@ layui.config({
         //even:true,  //隔行变色
         page: true,
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
-        limit: 10,
+        limit: 3,
+        //filter:'test',
         cols: [[
-            { field: 'tail_id', type: 'checkbox' },
+            { field: 'tail', type: 'checkbox' },
             { field: 'tail_id', title: '跟踪id', width: 80 },
             { field: 'tail_status', title: '跟踪状态', width: 120 },
-            { field: 'contents', title: '跟踪详情', width: 120 },
+            { field: 'contents', title: '跟踪详情', width: 120, edit: 'text' },
             { field: 'tail_pay', title: '跟踪方式', width: 120, templet: '#openTypeTpl' },
-            { field: 'utime', title: '下次联系时间', width: 120, templet: '#openTypeTpl' },
-            { field: 'admin_id', title: '用户id', width: 100, templet: '#isNecessary' },
+            { field: 'utime', title: '下次联系时间', width: 200, templet: '#openTypeTpl' },
+            //{ field: 'admin_id', title:  '用户id', width: 100, templet: '#isNecessary' },
             //{ field: 'order', title: '排序', width: 80, edit: 'text' },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
@@ -122,23 +123,21 @@ layui.config({
     table.render({
         id: tableId,
         elem: '#cost',
-        url: '/window10/json/menulist.json',
+        url: 'costListDo',
         //height: 'full-65', //自适应高度
         //size: '',   //表格尺寸，可选值sm lg
         //skin: '',   //边框风格，可选值line row nob
         //even:true,  //隔行变色
         page: true,
         limits: [10, 20, 30, 40, 50, 60, 70, 100],
-        limit: 10,
+        limit: 3,
         cols: [[
-            { field: 'id', type: 'checkbox' },
-            { field: 'icon', title: '图标', width: 120 },
-            { field: 'name', title: '名称', width: 150 },
-            { field: 'title', title: '标题', width: 150 },
-            { field: 'pageURL', title: '页面地址', width: 200 },
-            { field: 'openType', title: '页面类型', width: 120, templet: '#openTypeTpl' },
-            { field: 'isNecessary', title: '系统菜单', width: 100, templet: '#isNecessary' },
-            { field: 'order', title: '排序', width: 80, edit: 'text' },
+            { field: 'cost_id', type: 'checkbox' },
+            { field: 'company_name', title: '公司名称', width: 120 },
+            { field: 'cost_amount', title: '总价钱', width: 150 },
+            { field: 'content', title: '收支详情', width: 150 },
+            { field: 'cost_status', title: '收支类型', width: 200 },
+            { field: 'ctime', title: '添加时间', width: 200 },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
         ]]
     });
@@ -204,8 +203,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'productDel') { //删除
+            deleteMenu('product', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -245,8 +244,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'adminDel') { //删除
+            deleteMenu('admin', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -286,8 +285,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'afterDel') { //删除
+            deleteMenu('after', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -327,8 +326,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'costDel') { //删除
+            deleteMenu('cost', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -368,8 +367,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'orderDel') { //删除
+            deleteMenu('order', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -409,8 +408,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'userDel') { //删除
+            deleteMenu('user', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -450,8 +449,8 @@ layui.config({
         $(data).each(function (index, item) {
             ids += item.id + ',';
         });
-        if (layEvent === 'del') { //删除
-            deleteMenu(ids, obj);
+        if (layEvent === 'tailDel') { //删除
+            deleteMenu('tail_order', obj);
         } else if (layEvent === 'edit') { //编辑
             openEditWindow(data.id);
         } else if (layEvent === 'setting') {    //功能设置
@@ -489,28 +488,26 @@ layui.config({
     //    todo   监听单元格编辑
     // todo 监听产品单元格编辑
     table.on('edit(product)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-        if (/^[0-9]+$/.test(obj.value)) {
-            var index = layer.load(1);
+        if(obj.field == 'product_price' && !/^[0-9]+$/.test(obj.value)){
+            msg('格式不正确',{icon:5,time:1000},function(){
+                $(".layui-laypage-btn")[0].click();
+            });
+            return false;
+        }
             $.ajax({
-                type: 'post',
-                url: 'views/menu/updatemenuorder',
-                data: { "id": obj.data.id, "order": obj.value },
+                type: 'get',
+                url: 'productSave',
+                data: { "product_id": obj.data.product_id, "value": obj.value ,"field": obj.field},
                 success: function (json) {
-                    layer.close(index);
-                    if (!json.isSucceed) {
-                        msg(json.message);
+                    if(json.status == 1000){
+                        msg(json.msg,{icon:6,time:1000});
+                    }else{
+                        msg(json.msg,{icon:5,time:1000},function(){
+                            $('.layui-laypage-btn')[0].click();
+                        });
                     }
-                },
-                error: function (xml) {
-                    layer.close(index);
-                    msg("修改失败", {
-                        icon: 2,
-                        time: 2000
-                    });
-                    console.log(xml.responseText);
                 }
             });
-        }
     });
 
     // todo 监听管理员单元格编辑
@@ -621,28 +618,31 @@ layui.config({
         }
     });
 
-    // todo 监听跟踪订单单元格编辑
+    // todo 监听跟踪订单单元格编辑    监听跟
     table.on('edit(tail)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-        if (/^[0-9]+$/.test(obj.value)) {
+        if (/^.*/.test(obj.value)) {
             var index = layer.load(1);
             $.ajax({
-                type: 'post',
-                url: 'views/menu/updatemenuorder',
-                data: { "id": obj.data.id, "order": obj.value },
-                success: function (json) {
+                type: 'get',
+                url: 'tailSave',
+                data: { "id": obj.data.tail_id, "order": obj.value},
+                async: false,
+                dataType: 'json',
+                success: function (json_info) {
                     layer.close(index);
-                    if (!json.isSucceed) {
-                        msg(json.message);
+                    if (json_info.status==1000) {
+                        //msg('[id: '+ data.id +'] ' + order + ' 字段更改为：'+ value);
+                        msg(json_info.msg);
+                    }else{
+                        msg(json_info.msg);
                     }
-                },
-                error: function (xml) {
-                    layer.close(index);
-                    msg("修改失败", {
-                        icon: 2,
-                        time: 2000
-                    });
-                    console.log(xml.responseText);
                 }
+
+                //        icon: 2,
+                //        time: 2000
+                //    });
+                //    console.log(xml.responseText);
+                //}
             });
         }
     });
@@ -706,15 +706,49 @@ layui.config({
         });
     }
     //删除菜单
-    function deleteMenu(ids, obj) {
+    function deleteMenu(mark, obj) {
         layer.confirm('确认删除【' + obj.data.product_name + '】吗？',function(index){
             layer.close(index);
+            if(mark == 'product'){
+                var id = obj.data.product_id;
+            }else if(mark == 'admin'){
+                var id = obj.data.admin_id;
+            }else if(mark == 'after'){
+                var id = obj.data.after_id;
+            }else if(mark == 'tail_order'){
+                var id = obj.data.tail_id;
+            }else if(mark == 'cost'){
+                var id = obj.data.cost_id;
+            }else if(mark == 'order'){
+                var id = obj.data.order_id;
+            }else if(mark == 'user'){
+                var id = obj.data.user_id;
+            }
+
+            $.ajax({
+                url:'delete',
+                data:'mark='+mark+'&id='+id,
+                type:'get',
+                dataType:'json',
+                success:function(json_info){
+                    if(json_info.status == 1000){
+                        msg(json_info.msg);
+                        msg('数据请求中',{icon:6,time:1000},function(){
+                            $(".layui-laypage-btn")[0].click();
+                        });
+                    }else{
+                        msg(json_info.msg);
+                    }
+                }
+            });
         })
     }
+
     //表格刷新
     function reloadTable() {
         table.reload(tableId, {});
     }
+
     //绑定工具栏添加按钮事件
     //添加产品
     $('#productAdd').on('click', function () {

@@ -19,9 +19,9 @@
 <div style="margin:auto 10px;">
     <table id="admin" lay-filter="admin"></table>
     <script type="text/html" id="barMenu">
-        <a class="layui-btn layui-btn-xs" lay-event="setting">权限设置</a>
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        {{--<a class="layui-btn layui-btn-xs" lay-event="setting">权限设置</a>--}}
+        {{--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--}}
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="adminDel">删除</a>
     </script>
     {{--<script type="text/html" id="openTypeTpl">--}}
         {{--{{#  if(d.openType == 1){ }}--}}

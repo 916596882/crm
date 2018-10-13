@@ -77,6 +77,7 @@ class User extends Common
         $userWhere = [
             'status' => 1
         ];
+
         $arr = DB::table('user')
             ->join('product','product.product_id','=','user.product_id')
             ->where($userWhere)
@@ -84,6 +85,7 @@ class User extends Common
             ->get();
         //商品和用户信息
         $arr = json_decode(json_encode($arr),true);
+//        print_r($arr);exit;
         $new = [];
         foreach($arr as $k=>$v){
             $new[] = $v['user_province'];

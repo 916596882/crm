@@ -3,7 +3,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">订单进度</label>
             <div class="layui-input-block">
-                <select name="parentId">
+                <select name="tail_status">
                     <option value="0">请选择</option>
                     <option value="1">潜在客户</option>
                     <option value="2">准备下单</option>
@@ -15,22 +15,22 @@
         <div class="layui-form-item">
             <label class="layui-form-label">详细内容</label>
             <div class="layui-input-block">
-                <input type="text" name="icon" win-verify="required" placeholder="" autocomplete="off" class="layui-input" />
+                <input type="text" name="contents" win-verify="required" placeholder="" autocomplete="off" class="layui-input" />
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">下次联系时间</label>
             <div class="layui-inline">
-                <input type="text" class="layui-input" id="test1">
+                <input type="text" name="utime" class="layui-input" id="test1">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">跟单类型</label>
             <div class="layui-input-block winui-radio">
-                <input type="radio" name="openType" value="1" title="手机" checked />
-                <input type="radio" name="openType" value="2" title="微信" />
+                <input type="radio" name="tail_pay" value="1" title="手机" checked />
+                <input type="radio" name="tail_pay" value="2" title="微信" />
             </div>
         </div>
         {{--<div class="layui-form-item">--}}
@@ -46,7 +46,7 @@
             </div>
         </div>
     </form>
-    <div class="tips">Tips：1.系统菜单不可以删除 2.窗口标题若不填则默认和菜单名称相同</div>
+    {{--<div class="tips">Tips：1.系统菜单不可以删除 2.窗口标题若不填则默认和菜单名称相同</div>--}}
 </div>
 <script>
     layui.use('laydate', function(){
@@ -72,23 +72,20 @@
             //表单验证
             if (winui.verifyForm(data.elem)) {
                 layui.$.ajax({
-                    type: 'get',
-                    url: 'json/resfailed.json',
+                    type: 'post',
+                    url: 'tailAdd',
                     async: false,
-                    data: data.field,
+                    data: $('form').serialize()+'&_token='+"{{csrf_token()}}",
                     dataType: 'json',
-                    success: function (json) {
-                        if (json.isSucceed) {
-                            msg('添加成功');
+                    success: function (json_info) {
+                        if (json_info.status==1000) {
+                            msg(json_info.msg);
+                            winui.window.close('tailAdd');
                         } else {
-                            msg(json.message)
+                            msg(json_info.msg)
                         }
-                        winui.window.close('addMenu');
-                    },
-                    error: function (xml) {
-                        msg('添加失败');
-                        console.log(xml.responseText);
                     }
+
                 });
             }
             return false;

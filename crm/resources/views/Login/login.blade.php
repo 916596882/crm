@@ -74,7 +74,7 @@
                           if(json_info.status == 1000){
                               layer.confirm('匹配成功',function(index){
                                   layer.close(index);
-                                  location.href = '/';
+                                  location.href = '/index';
                               });
                           }else{
                               layer.msg(json_info.msg);

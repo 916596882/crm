@@ -57,7 +57,10 @@ class Cost extends Common
     public function addCost()
     {
         if(! request()->ajax() || ! request()->isMethod('post')){
-            return view('Cost/addCost');
+            $user_data = DB::table('user')->get()->toArray();
+            return view('Cost/addCost',[
+                'user_info' => $user_data
+            ]);
         }else{
             $info=input::post();
             unset($info['_token']);

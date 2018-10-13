@@ -1,9 +1,20 @@
 <div style="width:600px;margin:0 auto;padding-top:20px;">
     <form class="layui-form" action="">
         <div class="layui-form-item">
-            <label class="layui-form-label">公司名称</label>
+            <label class="layui-form-label">选择用户</label>
             <div class="layui-input-block">
-                <input type="text" name="company_name" win-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input" />
+                <select name="interest" lay-filter="user">
+                    <option value="">请选择</option>
+                    @foreach($user_info as $v)
+                        <option value="{{$v->user_id}}">{{$v->user_name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品</label>
+            <div class="layui-input-block">
+                <input type="text" name="product" placeholder="请输入产品名" autocomplete="off" class="layui-input" />
             </div>
         </div>
         <div class="layui-form-item">
@@ -44,6 +55,10 @@
         form.render();
         form.on('switch(isNecessary)', function (data) {
             $(data.elem).val(data.elem.checked);
+        });
+        //监听select
+        form.on('select(user)',function(info){
+            
         });
         form.on('submit(formAddMenu)', function (data) {
             //表单验证

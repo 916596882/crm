@@ -29,18 +29,19 @@ class Cost extends Common
         $cost_info = DB::table('cost')->where($where)->forPage($page, $limit)->get();
         $cost_info = json_decode(json_encode($cost_info), true);
 //        print_r($cost_info);exit;
+
         foreach ($cost_info as $k => &$v) {
             $v['ctime'] = date('Y-m-d H:i:s', $v['ctime']);
-            if($v['status']==1){
-                $v['status']='收入';
+            if($v['cost_status']==1){
+                $v['cost_status']='收入';
             }else{
-                $v['status']='支出';
+                $v['cost_status']='支出';
             }
         }
         //总条数
+
         $cost_count=DB::table('cost')->where($where)->count();
 //        echo $tail_count;EXIT;
-
         $arr=[
             'code'=>0,
             'msg'=>'success',

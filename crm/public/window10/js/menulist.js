@@ -66,7 +66,7 @@ layui.config({
             { field: 'tail_status', title: '跟踪状态', width: 120 },
             { field: 'contents', title: '跟踪详情', width: 120, edit: 'text' },
             { field: 'tail_pay', title: '跟踪方式', width: 120, templet: '#openTypeTpl' },
-            { field: 'utime', title: '下次联系时间', width: 200, templet: '#openTypeTpl' },
+            { field: 'ctime', title: '下次联系时间', width: 200, templet: '#openTypeTpl' },
             //{ field: 'admin_id', title:  '用户id', width: 100, templet: '#isNecessary' },
             //{ field: 'order', title: '排序', width: 80, edit: 'text' },
             { title: '操作', fixed: 'right', align: 'center', toolbar: '#barMenu', width: 200 }
@@ -706,7 +706,7 @@ layui.config({
     }
     //删除菜单
     function deleteMenu(mark, obj) {
-        layer.confirm('确认删除【' + obj.data.product_name + '】吗？',function(index){
+        layer.confirm('确认删除吗？',function(index){
             layer.close(index);
             if(mark == 'product'){
                 var id = obj.data.product_id;

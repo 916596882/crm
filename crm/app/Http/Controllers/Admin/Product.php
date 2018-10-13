@@ -23,10 +23,13 @@ class Product extends Common
             foreach($product_data as $k => &$v){
                 $v['ctime'] = date('Y-m-d H:i:s',$v['ctime']);
             }
+            //总条数
+
+            $cost_count=DB::table('product')->where('product_status','<>',4)->count();
             return [
                 'code' => 0,
                 'msg' => '',
-                'count' => 1000,
+                'count' => $cost_count,
                 'data' => $product_data
             ];
         }

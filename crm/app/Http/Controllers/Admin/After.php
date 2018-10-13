@@ -56,7 +56,7 @@ class After extends Common
     public function afterAdd(){
         //查出所有的客户
         $where = [
-            'status' => 1
+            'user_status' => 1
         ];
         $arr = DB::table('user')->where($where)->get();
         $array = DB::table('product')->get();

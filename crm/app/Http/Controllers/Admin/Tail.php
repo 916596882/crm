@@ -38,13 +38,13 @@ class Tail extends Common
         $tail_info=json_decode(json_encode($tail_info),true);
 //        print_r($tail_info);exit;
         foreach($tail_info as $k=>&$v){
-            $v['utime']=date('Y-m-d H:i:s',$v['utime']);
-            if($v['status']==1){
-                $v['status']='潜在客户';
+            $v['ctime']=date('Y-m-d H:i:s',$v['ctime']);
+            if($v['tail_status']==1){
+                $v['tail_status']='潜在客户';
             }elseif($v['tail_status']==2){
-                $v['status']='准备下单';
+                $v['tail_status']='准备下单';
             }else{
-                $v['status']='犹豫客户';
+                $v['tail_status']='犹豫客户';
             }
 
             if($v['tail_pay']==1){

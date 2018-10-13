@@ -3,7 +3,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">选择用户</label>
             <div class="layui-input-block">
-                <select name="interest" lay-filter="user">
+                <select name="user_id" lay-filter="user">
                     <option value="">请选择</option>
                     @foreach($user_info as $v)
                         <option value="{{$v->user_id}}">{{$v->user_name}}</option>
@@ -14,7 +14,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">产品</label>
             <div class="layui-input-block">
-                <input type="text" name="product" placeholder="请输入产品名" autocomplete="off" class="layui-input" />
+                <input type="text" name="product_name"  placeholder="请输入产品名" autocomplete="off" class="layui-input" />
             </div>
         </div>
         <div class="layui-form-item">
@@ -58,7 +58,15 @@
         });
         //监听select
         form.on('select(user)',function(info){
-            
+            $.ajax({
+                url:'autoProduct',
+                type:'post',
+                data:'user_id='+info.value+'&_token='+"{{csrf_token()}}",
+                dataType:'json',
+                success:function(json_info){
+                    $('[name=product_name]').val(json_info.product);
+                }
+            });
         });
         form.on('submit(formAddMenu)', function (data) {
             //表单验证
@@ -73,6 +81,15 @@
                         if (json_info.status==1000) {
                             msg(json_info.msg);
                             winui.window.close('addCost');
+                            $.ajax({
+                                url :'createOrder',
+                                type:'post',
+                                data: $('form').serialize()+'&_token='+"{{csrf_token()}}",
+                                dataType:'json',
+                                success:function(json_info){
+
+                                }
+                            });
                         } else {
                             msg(json_info.msg)
                         }

@@ -69,11 +69,11 @@ Route::any('delete','Admin\Common@delete_info');
 //产品修改
 Route::any('productSave','Admin\Product@productSave');
 
+//自动识别产品
+Route::any('autoProduct','Admin\Cost@autoProduct');
 
-
-
-
-
+//生成订单
+Route::any('createOrder','Admin\Order@createOrder');
 
 
 

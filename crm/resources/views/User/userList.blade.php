@@ -6,6 +6,7 @@
     <link href="/window10/lib/layui/css/layui.css" rel="stylesheet" />
     <link href="/window10/lib/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link href="/window10/lib/winui/css/winui.css" rel="stylesheet" />
+
 </head>
 <body>
 <div class="winui-toolbar">
@@ -40,6 +41,7 @@
     <div class="tips">Tips：1.系统菜单不可以删除 2.修改或添加数据后暂不支持自动刷新表格</div>
 </div>
 <script src="/window10/lib/layui/layui.js"></script>
+<script src = "./jquery-3.2.1.min.js"  ></script>
 <script type="text/javascript">
     layui.config({
         base: '/window10/js/'

@@ -66,6 +66,8 @@ class User extends Common
 
     //用户列表
     public function userLists(){
+        $limit = Input::get('limit');
+        $page = Input::get('page');
 //            {
 //                "code": 0,
 //                "msg": "",
@@ -73,12 +75,13 @@ class User extends Common
 //                "data": [{}, {}]
 //            }
         $userWhere = [
-            'status' => 1
+            'user_status' => 1
         ];
 
         $arr = DB::table('user')
             ->join('product','product.product_id','=','user.product_id')
             ->where($userWhere)
+            ->forPage($page,$limit)
             ->get();
         //商品和用户信息
         $arr = json_decode(json_encode($arr),true);
@@ -119,6 +122,30 @@ class User extends Common
         return $data;
     }
 
-
+    //修改用户
+    function userUpdate(){
+        $data = Input::get();
+        $where = [
+            'user_name' => $data['val']
+        ];
+        $info = (array)DB::table('user')->where('user_id','<>',$data['user_id'])->where($where)->first();
+//        print_r($info);exit;
+        if(!empty($info)){
+            return json_encode(['status'=>1,'msg'=>'此名字已存在，换个试试吧']);
+        }
+//        echo $data['user_id'];exit;
+        $saveWhere = [
+            'user_id' => $data['user_id']
+        ];
+        $update = [
+            'user_name' => $data['val']
+        ];
+        $res = DB::table('user')->where($saveWhere)->update($update);
+        if($res>0){
+            return json_encode(['status'=>100,'success'=>'成功']);
+        }else{
+            return json_encode(['status'=>1,'msg'=>'修改失败']);
+        }
+    }
 
 }

@@ -73,7 +73,7 @@ Route::any('productSave','Admin\Product@productSave');
 Route::any('autoProduct','Admin\Cost@autoProduct');
 
 //生成订单
-Route::any('create','Admin\Order@createOrder');
+Route::any('createOrder','Admin\Order@createOrder');
 
 
 

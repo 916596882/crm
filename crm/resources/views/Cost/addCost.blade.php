@@ -81,6 +81,15 @@
                         if (json_info.status==1000) {
                             msg(json_info.msg);
                             winui.window.close('addCost');
+                            $.ajax({
+                                url :'createOrder',
+                                type:'post',
+                                data: $('form').serialize()+'&_token='+"{{csrf_token()}}",
+                                dataType:'json',
+                                success:function(json_info){
+
+                                }
+                            });
                         } else {
                             msg(json_info.msg)
                         }
